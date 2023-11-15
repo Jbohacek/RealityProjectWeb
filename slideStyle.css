@@ -1,0 +1,74 @@
+.slide{
+    height: 32vw;
+}
+
+.slide img{
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    filter: brightness(70%);
+    position: absolute;
+    top: 15vh;
+    left: 0;
+
+    -webkit-user-drag: none;
+    user-select: none;
+    
+}
+.slide form{
+    position: relative;
+    top: 15vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.slide form label{
+    display: block;
+    text-align: center;
+    font-size: 8vh;
+    font-family: Myriad Pro Bold;
+    color: white;
+}
+.slide form div{
+    margin-top: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide form input{
+    font-size: 2vh;
+    padding: 1vh;
+    border: none;
+    border-radius: 0.5vh;
+    width: 23vh;
+    margin-right: 2vh;
+    transition: background-color 300ms;
+    transition: width 300ms;
+}
+.slide form input:focus{
+    outline: none;
+    background-color: #dadada;
+    width: 50%;
+}
+
+.slide form input::placeholder{
+    color: black;
+}
+
+
+.slide form button{
+    letter-spacing: 0.1vh;
+    font-size: 2vh;
+    padding: 1vh 2vh;
+    border-radius: 0.5vh;
+    border: none;
+    background-color: #ef8d2f;
+    color: white;
+    text-transform: uppercase;
+    transition: filter 300ms;
+    cursor: pointer;
+}
+
+.slide form button:hover{
+    filter: brightness(70%);
+}

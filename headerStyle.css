@@ -1,0 +1,63 @@
+header{
+    margin: 0 7vh;
+    margin-top: 3vh;
+    margin-bottom: 5vh;
+}
+
+.infoBox{
+    justify-content: space-between;
+    display: flex;
+    padding-bottom: 1.5vh;
+    margin-bottom: 1.5vh;
+    border-bottom: solid lightgray 0.3vh;
+}
+
+.info{
+    display: flex;
+
+}
+
+.info img{
+    width: 2vh;
+    height: 2vh;
+   margin-right: 1vh;
+}
+
+.info div{
+    
+    font-size: 2vh;
+    text-align: end;
+}
+
+header img{
+    width: 25vh;
+    max-width: 30%;
+}
+
+header nav{
+    display: flex;
+    justify-content: space-between;
+}
+header nav div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav div a{
+    font-family: Myriad Pro Bold;
+    margin-left: 5vh;
+    display: inline;
+    color: black;
+    font-size: 2.5vh;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5vh;
+    text-decoration-color: transparent;
+
+    transition: text-decoration-color 200ms;
+}
+
+header nav div a:hover{
+    text-decoration-color: rgb(166, 166, 3);
+}

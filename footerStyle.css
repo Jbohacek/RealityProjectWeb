@@ -1,0 +1,88 @@
+footer *{
+    color: white;
+}
+footer h5{
+    font-size: 2.5vh;
+    font-family: Myriad Pro Bold;
+    text-transform: uppercase;
+    margin-bottom: 1vh;
+}
+
+footer{
+    display: flex;
+    padding: 3vh 8vw;
+    margin-top: 10vh;
+    background-color: #1f1f1f;
+}
+.newsletter{
+    flex: 1;
+    margin-right: 5vh;
+}
+
+.newsletter p{
+    font-weight: 100;
+}
+
+.newsletter button{
+    letter-spacing: 0.1vh;
+    font-size: 1.5vh;
+    padding: 1.5vh 2vh;
+    border-radius: 0.5vh;
+    border: none;
+    background-color: #ef8d2f;
+    color: white;
+    text-transform: uppercase;
+    transition: filter 300ms;
+    cursor: pointer;
+}
+
+.newsletter button:hover{
+    filter: brightness(70%);
+}
+
+
+.newsletter input{
+    font-size: 2vh;
+    padding: 1vh;
+    border: none;
+    border-radius: 0.5vh;
+    width: 20vh;
+    margin-top: 2vh;
+    margin-right: 2vh;
+    transition: background-color 300ms;
+    color: black;
+}
+.newsletter input:focus{
+    outline: none;
+    background-color: #dadada;
+}
+
+
+.links{
+    flex: 1;
+}
+
+.links li{
+    margin-left: 2vh;
+    margin-bottom: 1vh;
+}
+.links li:nth-child(2){
+    text-decoration: underline;
+}
+
+.links li::marker{
+    color: #ee8e2f;
+}
+.news{
+    flex: 1;
+}
+.news div h6{
+    margin-top: 2vh;
+    color: #4f4f4f;
+}
+#Copyright{
+    background-color: #1f1f1f;
+    color: #4f4f4f;
+    text-align: center;
+    padding-bottom: 3vh;
+}
