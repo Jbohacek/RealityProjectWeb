@@ -7,8 +7,10 @@
     display: flex;
 }
 .reviews div img{
-    width: 10vw;
+    width: 10vh;
+    height: 10vh;
     margin-right: 1vh;
+
 }
 
 .reviews div div{
@@ -24,4 +26,13 @@
     text-align: end;
     margin-right: 8vh;
     font-family: Myriad Pro Bold;
+}
+
+@media only screen and (max-width: 750px){
+    .reviews{
+        flex-direction: column;
+    }
+    .reviews div:first-child{
+        margin-bottom: 1vh;
+    }
 }

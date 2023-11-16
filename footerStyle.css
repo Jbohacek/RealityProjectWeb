@@ -46,9 +46,8 @@ footer{
     padding: 1vh;
     border: none;
     border-radius: 0.5vh;
-    width: 20vh;
+    width: 50%;
     margin-top: 2vh;
-    margin-right: 2vh;
     transition: background-color 300ms;
     color: black;
 }
@@ -85,4 +84,27 @@ footer{
     color: #4f4f4f;
     text-align: center;
     padding-bottom: 3vh;
+}
+
+@media only screen and (max-width: 700px){
+    footer{
+        flex-direction: column;
+    }
+    .newsletter{
+        margin-bottom: 4vh;
+    }
+
+    .links{
+        margin-bottom: 4vh;
+    }
+    .newsletter input{
+        min-width: 60%;
+    }
+}
+
+@media only screen and (max-width: 905px)
+{
+    .newsletter input{
+        width: 30%;
+    }
 }

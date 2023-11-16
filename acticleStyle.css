@@ -76,3 +76,13 @@ hr{
 #seeMore:hover{
     filter: brightness(70%);
 }
+
+@media only screen and (max-width: 650px){
+    .articles{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+    #seeMore{
+        width: 15vh;
+    }
+}

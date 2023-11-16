@@ -13,3 +13,9 @@
     font-family: Myriad Pro Bold;
     src: url(References/Fonts/MYRIADPRO-BOLD.OTF);
   }
+
+
+  a{
+    text-decoration: none;
+    color: black;
+  }

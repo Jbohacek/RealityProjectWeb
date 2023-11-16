@@ -61,3 +61,52 @@ header nav div a{
 header nav div a:hover{
     text-decoration-color: rgb(166, 166, 3);
 }
+
+
+@media only screen and (max-width: 650px)
+{
+    header nav div{
+        flex-direction: column;
+        justify-content: start;
+    }
+    header nav{
+        display: block;
+        margin-left: 5vh;
+        margin-right: 5vh;
+    }
+
+    header nav div a{
+
+        margin-left: 0;
+        margin-bottom: 1vh;
+        padding: 1vh;
+        width: 100%;
+        text-align: center;
+        border: 0.1vh solid #dadada;
+        border-radius: 1vh;
+        transition: background-color 100ms;
+    }
+    
+    header nav div a:hover{
+        background-color: #dadada;
+    }
+
+    header nav img{
+        display: block;
+        margin: 0 auto;
+        width: 70%;
+        max-width: 150%;
+        margin-bottom: 2vh;
+    }
+    .info img{
+        display: none;
+    }
+    .info{
+        padding: 0 1vh;
+    }
+
+    header{
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

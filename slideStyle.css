@@ -103,4 +103,12 @@
     .slide form input:focus{
         width: 60%;
     }
+
+    .slide{
+        height: 36vw;
+    }
+
+    .slide img{
+        top: 37vh;
+    }
 }
