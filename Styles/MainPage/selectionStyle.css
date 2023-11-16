@@ -1,0 +1,63 @@
+.selection{
+    margin: 0 5vw;
+    margin-top: 3vh;
+    display: flex;
+    justify-content: space-between;
+}
+.selection a{
+    color: white;
+    text-decoration: none;
+    padding: 5vh 7%;
+    background-size: contain;
+    margin: 0 0.5vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: filter 300ms;
+    transition: transform 300ms;
+    
+}
+.selection a:hover{
+    filter: brightness(70%);
+    transform: scale(1.1);
+}
+
+.selection a div:first-child{
+    font-family: Myriad Pro Bold;
+    font-size: 4vh;
+}
+.selection a div:last-child{
+    font-size: 2vh;
+}
+.selection a div{
+    text-align: center;
+}
+
+
+.selection a:nth-child(1)
+{
+    background-image: url(../../References/podklady/home-img-03-442-280.png);
+}
+.selection a:nth-child(2)
+{
+    background-image: url(../../References/podklady/home-img-04-442-280.png);
+}
+.selection a:nth-child(3)
+{
+    background-image: url(../../References/podklady/home-img-01-442-280.png);
+}
+.selection a:nth-child(4)
+{
+    background-image: url(../../References/podklady/home-img-02-442-280.png);
+}
+
+@media only screen and (max-width: 1000px)
+{
+    .selection{
+        margin: 0 5vw;
+        margin-top: 3vh;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2,1fr);
+        gap: 2vh;
+    }
+}

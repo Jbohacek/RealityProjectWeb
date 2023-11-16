@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Myriad Pro;
+    font-size: 1.7vh;
+}
+
+@font-face {
+    font-family: Myriad Pro;
+    src: url(../References/Fonts/MYRIADPRO-REGULAR.OTF);
+  }
+@font-face {
+    font-family: Myriad Pro Bold;
+    src: url(../References/Fonts/MYRIADPRO-BOLD.OTF);
+  }
+
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
