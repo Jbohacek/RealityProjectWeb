@@ -72,3 +72,35 @@
 .slide form button:hover{
     filter: brightness(70%);
 }
+
+@media only screen and (max-width: 1000px)
+{
+    .slide form label{
+        font-size: 5vh;
+    }
+}
+
+@media only screen and (max-width: 650px)
+{
+    .slide form label{
+        font-size: 4vh;
+    }
+
+    .slide img{
+        width: 150%;
+        max-width: 120%;
+    }
+    .slide form input{
+        font-size: 1.5vh;
+        padding: 0.5vh 1.5vh;
+    }
+
+    .slide form button{
+        font-size: 1.5vh;
+        padding: 1vh 2vh;
+        
+    }
+    .slide form input:focus{
+        width: 60%;
+    }
+}

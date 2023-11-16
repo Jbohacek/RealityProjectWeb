@@ -49,3 +49,15 @@
 {
     background-image: url(References/podklady/home-img-02-442-280.png);
 }
+
+@media only screen and (max-width: 1000px)
+{
+    .selection{
+        margin: 0 5vw;
+        margin-top: 3vh;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2,1fr);
+        gap: 2vh;
+    }
+}
