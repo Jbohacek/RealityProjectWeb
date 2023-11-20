@@ -1,0 +1,124 @@
+.ending{
+    display: flex;
+    justify-content: space-around;
+}
+.ending-description{
+    display: flex;
+    justify-content: space-around;
+}
+
+.contanct{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr) repeat(1, 2fr);
+    grid-template-rows: repeat(2, 1fr) repeat(1, 2fr);
+}
+
+.reply{
+    display: grid;
+    gap: 2vh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr) repeat(1, 3fr) repeat(1, 1fr);
+}
+
+.reply input, .reply textarea{
+    padding: 1vh;
+}
+
+#input-jmeno{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.reply textarea{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    resize: none;
+}
+.reply div{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    justify-content: center;
+}
+
+.big-header{
+    color: #f08f2f;
+    font-weight: bold;
+    font-size: 3vh;
+    margin: 2vh 0;
+}
+
+.contanct div{
+    display: flex;
+    flex-direction: column;
+    margin-left: 4vh;
+    
+}
+.contanct div a, .contanct div nevim{
+    font-size:2.5vh;
+    text-decoration: underline;
+    font-weight: 600;
+    margin-left: 0.5vh;
+}
+.contanct div nevim{
+    text-decoration: none;
+}
+
+.reply button{
+    width: 80%;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 0.5vh;
+    background-color: #ef8d2f;
+    border-radius: 0.5vh;
+    transition: filter 100ms;
+    text-transform: uppercase;
+    font-size: 1.8vh;
+    letter-spacing: 0.2vh;
+    cursor: pointer;
+}
+
+.reply button:hover{
+    filter: brightness(70%);
+}
+
+.center{
+    text-align: center;
+}
+
+.unrevert2{
+    display: none;
+}
+
+
+@media only screen and (max-width: 1100px){
+    .ending{
+        display: block;
+
+    }
+    .revert2{
+        display: none;
+    }
+    .unrevert2{
+        display: block;
+    }
+    
+    .contanct{
+        display: flex;
+        justify-content: center;
+    }
+    
+    img[alt~="makler"], img[alt~="cena"]
+    {
+        display: none;
+    }
+}
+
+.together{
+    display: flex !important; 
+    margin-left: 0 !important; 
+    flex-direction: row !important; 
+    align-items: center !important;
+}

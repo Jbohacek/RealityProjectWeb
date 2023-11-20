@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="../Styles/style.css">
     <link rel="stylesheet" href="../Styles/headerStyle.css">
     <link rel="stylesheet" href="../Styles/footerStyle.css">
+
+    <link rel="stylesheet" href="../Styles/DetailPage/picturesDetail.css">
+    <link rel="stylesheet" href="../Styles/DetailPage/articleDetail.css">
+    <link rel="stylesheet" href="../Styles/DetailPage/tableDetail.css">
+    <link rel="stylesheet" href="../Styles/DetailPage/contactDetail.css">
 </head>
 <body>
     <header>
@@ -31,8 +36,8 @@
         </nav>
     </header>
     <main>
-        <img src="../References/podklady/DetailImage01.png" alt="">
-        <div>
+        <img id="main-img" src="../References/podklady/DetailImage01.png" alt="">
+        <div id="sec-imgs">
             <img src="../References/podklady/DetailImage02.png" alt="">
             <img src="../References/podklady/DetailImage03.png" alt="">
             <img src="../References/podklady/DetailImage04.png" alt="">
@@ -40,24 +45,48 @@
             <img src="../References/podklady/DetailImage06.png" alt="">
             <img src="../References/podklady/DetailImage07.png" alt="">
         </div>
-        <div>
-            <h3>Prodej bytu 260m2 s pozemkem 108 m2</h3>
-            <div>6 995 000 KČ</div>
-        </div>
-        <div>
-            <h5>Mezilesí, Praha 9 - Prosek</h5>
-            <div>za nemovitost</div>
-        </div>
-        <div>
-            <div>
-                <div>Energetická třída</div>
-                <div>C</div>
+        <div class="unrevert">
+            <div class="header">
+                <h3>Prodej bytu 260m2 s pozemkem 108 m2</h3>
+                <div class="sum">6 995 000 KČ</div>
             </div>
-            <div>
-                <img src="" alt="">
-                <div>spočítat hypotéku</div>
+            <div class="header">
+                <h5>Mezilesí, Praha 9 - Prosek</h5>
+                <div class="zanemovitost">za nemovitost</div>
+            </div>
+            <div class="header energie-hypoteka">
+                <div class="header energie">
+                    <div>Energetická třída</div>
+                    <div id="C">C</div>
+                </div>
+                <div class="header hypoteka">
+                    <img src="../References/podklady/calculator.png" alt="">
+                    <a href="">spočítat hypotéku</a>
+                </div>
             </div>
         </div>
+
+        <div class="revert">
+            <div class="header">
+                <h3>Prodej bytu 260m2 s pozemkem 108 m2</h3>
+                <h5>Mezilesí, Praha 9 - Prosek</h5>
+            </div>
+            <div class="header">
+                <div class="sum">6 995 000 KČ</div>
+                <div class="zanemovitost">za nemovitost</div>
+            </div>
+            <div class="header energie-hypoteka">
+                <div class="header energie">
+                    <div>Energetická třída</div>
+                    <div id="C">C</div>
+                </div>
+                <div class="header hypoteka">
+                    <img src="../References/podklady/calculator.png" alt="">
+                    <a href="">spočítat hypotéku</a>
+                </div>
+            </div>
+        </div>
+        
 
         <article>
             <p>Exkluzivně nabízíme prostorný, výborně řešený byt 3+1/L o celkové výměře 81 m2 (včetně lodžie plus sklep), který se nachází ve 4.NP zatepleného zrekonstruovaného domu, v příjemné a klidné lokalitě Praha 9 – Horní Počernice.</p>
@@ -116,8 +145,44 @@
                 </div>
             </div>
         </aside>
+        <div class="ending-description">
+            <div class="big-header">Kontaktujte Prodejce</div>
+            <div class="big-header revert2">Napiste nam, ozvete se</div>
+        </div>
+        <div class="ending">
+            <div class="contanct">
+                <img src="../References/podklady/jarmila.png" alt="jarmila">
+                <div>
+                    <nevim>Ing. Jarmila Vostrá</nevim>
+                    <div class="together">
+                        <img src="../References/podklady/email.png" alt="">
+                        <a href="mailto:jarmila@vostra.cz">jarmila@vosta.cz</a>
+                    </div>
+                    <div style="display: flex; margin-left: 0; flex-direction: row; align-items: center;">
+                        <img src="../References/podklady/customer-care.png" alt="">
+                        <a href="tel:+420666777888">+420 666 777 888</a>
+                    </div>
+                    
+                </div>
+                <img src="../References/podklady/MaklerRoku.png" alt="makler">
+                <img src="../References/podklady/cenaZakazniku.png" alt="cena">
+            </div>
+            <div class="big-header center unrevert2">Napiste nam, ozvete se</div>
+            <form class="reply" action="post">
+                <input type="text" name="Name" id="input-jmeno" placeholder="Vaše jméno a příjmení">
+                <input type="tel" name="Telefon" id="input-tel" placeholder="Telefon">
+                <input type="email" name="Email" id="input-email" placeholder="E-mail">
+                <textarea name="message" placeholder="Napište nám zprávu"></textarea>
+                <div>
+                    <button type="submit">Odeslat poptávku</button>
+                </div>
+            </form>
+            
+        </div>
         
     </main>
+    <img id="map" src="../References/podklady/map.png" alt="">
+    
     <footer>
         <article class="newsletter">
             <h5>Newsletter</h5>

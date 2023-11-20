@@ -1,0 +1,23 @@
+aside{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 1vh;
+}
+.collumn-item{
+    display: flex;
+    padding: 0.5vh;
+    justify-content: space-between;
+}
+.collumn-item:nth-child(even){
+    background-color: #fdf3e5;
+}
+.collumn-item:nth-child(odd){
+    background-color: #fae1c0;
+}
+@media only screen and (max-width: 1300px){
+    aside{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}

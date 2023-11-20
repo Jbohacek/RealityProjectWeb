@@ -1,0 +1,105 @@
+main{
+    margin: 0 13vw;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header h3{
+    font-size: 4vh;
+    color: #ee862d;
+}
+.sum{
+    font-size: 3vh;
+    font-weight: bold;
+    align-self: flex-end;
+}
+
+.header h5{
+    color: #898989;
+}
+
+.zanemovitost{
+    color: #898989;
+}
+
+.energie-hypoteka{
+    margin-top: 2vh;
+
+}
+
+.energie{
+    background-color: #59c132;
+    color: white;
+    padding: 1vh;
+}
+#C{
+    margin-left: 2vh;
+    font-size: 2vh;
+}
+
+.hypoteka{
+    width: 15%;
+    align-items: center;
+    justify-content: end;
+    gap: 1vh;
+}
+.hypoteka a{
+    text-decoration: underline;
+    color: #ef9038;
+    min-width: 85%;
+    text-align: start;
+}
+
+article{
+    margin-top: 3vh;
+}
+
+main article p{
+    color: #7c7c7c;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+    text-align: justify;
+}
+
+.revert{
+    display: none;
+}
+.unrevert{
+    display: block;
+}
+
+
+
+@media only screen and (max-width: 1300px){
+    .header{
+        display: block;
+    }
+    .unrevert{
+        display: none;
+    }
+    .revert{
+        display: block;
+    }
+    .energie-hypoteka{
+        display: flex;
+    }
+    .energie{
+        display: flex;
+    }
+    .hypoteka{
+        display: flex;
+    }
+    
+}
+
+footer{
+    margin-top: 0;
+}
+
+#map{
+    margin-top: 10vh;
+    width: 100%;
+}
