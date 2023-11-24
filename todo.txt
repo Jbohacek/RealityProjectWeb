@@ -1,0 +1,7 @@
+pismo ne vh
+--logo > home
+--odkazy footer > hover effect
+respozive > obrazek main
+responzive > formular detail
+--valid email dole
+byty nabidek 32 NOWRAP

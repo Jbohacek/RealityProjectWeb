@@ -25,13 +25,12 @@ header{
 
 .info div{
     
-    font-size: 2vh;
+    font-size: 1rem;
     text-align: end;
 }
 
-header img{
-    width: 25vh;
-    max-width: 30%;
+header nav a img{
+    width: 20vw;
 }
 
 header nav{
@@ -49,7 +48,7 @@ header nav div a{
     margin-left: 5vh;
     display: inline;
     color: black;
-    font-size: 2.5vh;
+    font-size: 1.7rem;
     text-transform: uppercase;
     text-decoration: underline;
     text-decoration-thickness: 0.5vh;
@@ -60,6 +59,13 @@ header nav div a{
 
 header nav div a:hover{
     text-decoration-color: rgb(166, 166, 3);
+}
+
+@media only screen and (max-width: 1050px)
+{
+    header nav a img{
+        width: 30vw;
+    }
 }
 
 
@@ -91,11 +97,10 @@ header nav div a:hover{
         background-color: #dadada;
     }
 
-    header nav img{
+    header nav a img{
         display: block;
         margin: 0 auto;
-        width: 70%;
-        max-width: 150%;
+        width: 60vw;
         margin-bottom: 2vh;
     }
     .info img{
@@ -109,4 +114,5 @@ header nav div a:hover{
         margin-left: 0;
         margin-right: 0;
     }
+
 }
