@@ -27,10 +27,12 @@
             </div>
         </div>
         <nav>
-            <img src="../References/podklady/logo-dark.png" alt="">
+            <a href="#">
+                <img src="../References/podklady/logo-dark.png" alt="">
+            </a>
             <div class="navigation">
                 <a href="../index.html">Home</a>
-                <a href="#">Catalog</a>
+                <a href="/Details/Detail1.html">Catalog</a>
                 <a href="">Kontakt</a>
             </div>
         </nav>
@@ -168,11 +170,11 @@
                 <img src="../References/podklady/cenaZakazniku.png" alt="cena">
             </div>
             <div class="big-header center unrevert2">Napiste nam, ozvete se</div>
-            <form class="reply" action="post">
-                <input type="text" name="Name" id="input-jmeno" placeholder="Vaše jméno a příjmení">
-                <input type="tel" name="Telefon" id="input-tel" placeholder="Telefon">
-                <input type="email" name="Email" id="input-email" placeholder="E-mail">
-                <textarea name="message" placeholder="Napište nám zprávu"></textarea>
+            <form class="reply" method="post" action="/sendPoptavka">
+                <input required type="text" name="Name" id="input-jmeno" placeholder="Vaše jméno a příjmení">
+                <input required type="tel" name="Telefon" id="input-tel" placeholder="Telefon">
+                <input required type="email" name="Email" id="input-email" placeholder="E-mail">
+                <textarea required name="message" placeholder="Napište nám zprávu"></textarea>
                 <div>
                     <button type="submit">Odeslat poptávku</button>
                 </div>
@@ -187,18 +189,18 @@
         <article class="newsletter">
             <h5>Newsletter</h5>
             <p>Keep up with the latest company news and events. Enter your e-mail and subscribe to our newsletter.</p>
-            <form>
-                <input type="email">
+            <form method="post" action="sendMail">
+                <input type="email" required name="email">
                 <button type="submit">Odeslat</button>
             </form>
         </article>
         <nav class="links">
             <h5>Užitečné odkazy</h5>
             <ul>
-                <li><a>Byty pronájem</a></li>
-                <li><a href="#">Byty prodej</a></li>
-                <li><a>Domy pronájem</a></li>
-                <li><a>Domy prodej</a></li>
+                <li><a href="#">Byty pronájem</a></li>
+                <li><a href="/Details/Detail1.html">Byty prodej</a></li>
+                <li><a href="#">Domy pronájem</a></li>
+                <li><a href="#">Domy prodej</a></li>
             </ul>
         </nav>
         <article class="news">

@@ -87,8 +87,8 @@
     }
 
     .slide img{
-        width: 150%;
-        max-width: 120%;
+        width: 100vw;
+        max-width: 100%;
     }
     .slide form input{
         font-size: 1.5vh;
@@ -110,5 +110,17 @@
 
     .slide img{
         top: 37vh;
+    }
+
+    .slide form{
+        top: 10vw;
+    }
+
+}
+
+@media only screen and (max-width: 420px)
+{
+    .slide form label {
+        font-size: 2.5vh;
     }
 }

@@ -8,11 +8,11 @@ main{
 }
 
 .header h3{
-    font-size: 4vh;
+    font-size: 40px;
     color: #ee862d;
 }
 .sum{
-    font-size: 3vh;
+    font-size: 30px;
     font-weight: bold;
     align-self: flex-end;
 }
@@ -37,7 +37,7 @@ main{
 }
 #C{
     margin-left: 2vh;
-    font-size: 2vh;
+    font-size: 15px;
 }
 
 .hypoteka{
@@ -49,17 +49,18 @@ main{
 .hypoteka a{
     text-decoration: underline;
     color: #ef9038;
-    min-width: 85%;
+    text-wrap: nowrap;
     text-align: start;
 }
 
-article{
+main article{
     margin-top: 3vh;
 }
 
+
 main article p{
     color: #7c7c7c;
-    font-size: 2vh;
+    font-size: 15px;
     margin-bottom: 1vh;
     text-align: justify;
 }
@@ -73,7 +74,7 @@ main article p{
 
 
 
-@media only screen and (max-width: 1300px){
+@media only screen and (max-width: 1100px){
     .header{
         display: block;
     }

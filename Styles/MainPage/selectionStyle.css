@@ -1,15 +1,15 @@
 .selection{
-    margin: 0 5vw;
+    
     margin-top: 3vh;
     display: flex;
     justify-content: space-between;
+    width: 90vw;
+    margin: 0 5vw;
 }
 .selection a{
     color: white;
     text-decoration: none;
     padding: 5vh 7%;
-    background-size: contain;
-    margin: 0 0.5vw;
     background-repeat: no-repeat;
     background-size: cover;
     transition: filter 300ms;
@@ -50,11 +50,11 @@
     background-image: url(../../References/podklady/home-img-02-442-280.png);
 }
 
-@media only screen and (max-width: 1000px)
+@media only screen and (max-width: 1080px)
 {
     .selection{
-        margin: 0 5vw;
-        margin-top: 3vh;
+        /*margin: 0 5vw;*/
+        
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2,1fr);

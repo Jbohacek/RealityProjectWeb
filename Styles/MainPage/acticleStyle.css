@@ -3,7 +3,7 @@ h3{
     text-align: center;
     color: #454546;
     font-family: Myriad Pro Bold;
-    font-size: 4vw;
+    font-size: 60px;
 }
 hr{
     width: 10%;
@@ -37,7 +37,7 @@ hr{
     text-decoration: none;
     color: #ef892e;
     font-family: Myriad Pro Bold;
-    font-size: 3vh;
+    font-size: 30px;
     transition: filter 300ms;
 }
 
@@ -49,7 +49,7 @@ hr{
     color: #404043;
     margin-top: 0.5vh 0;
     margin-bottom: 1.5vh;
-    font-size: 2.4vh;
+    font-size: 20px;
 }
 
 .articles p{
@@ -69,7 +69,7 @@ hr{
     border-radius: 0.5vh;
     transition: filter 100ms;
     text-transform: uppercase;
-    font-size: 1.8vh;
+    font-size: 15px;
     letter-spacing: 0.2vh;
 }
 

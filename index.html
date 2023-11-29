@@ -38,11 +38,11 @@
     <main>
         <div class="slide">
             <img src="References/podklady/slide-01-1920x640.jpg" alt="">
-            <form method="post" action="search">
+            <form method="post" action="/search">
                 <label>Vyberte si svůj nový byt</label>
                 <div>
                     <!-- sem by šel select2 -->
-                    <input name="searchText" placeholder="Vyberte si podle mesta..." type="text">
+                    <input name="searchText" required placeholder="Vyberte si podle mesta..." type="text">
                     <button type="submit">Hledat</button>
                 </div>
             </form>
@@ -203,7 +203,7 @@
         <article class="newsletter">
             <h5>Newsletter</h5>
             <p>Keep up with the latest company news and events. Enter your e-mail and subscribe to our newsletter.</p>
-            <form>
+            <form method="post" action="sendMail">
                 <input type="email" required name="email">
                 <button type="submit">Odeslat</button>
             </form>
