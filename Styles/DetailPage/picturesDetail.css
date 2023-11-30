@@ -7,10 +7,11 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 3vh;
+    gap: 1vw;
 }
 #sec-imgs img{
-    width: fit-content;
-    max-width: 100%;
+    width: 100%
+
 }
 
 
@@ -25,7 +26,7 @@
         height: 100%;
     }
     #sec-imgs img{
-        width: fit-content;
-        max-width: 100%;
+        width: 70%;
+        
     }
 }
