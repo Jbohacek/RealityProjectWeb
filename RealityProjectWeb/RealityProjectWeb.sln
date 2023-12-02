@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealityProjectWeb", "RealityProjectWeb\RealityProjectWeb.csproj", "{2F2FFF74-59EC-4431-8098-BA376D7DA091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealityProject.DataAccess", "DataAccess\RealityProject.DataAccess.csproj", "{DF0D2CE4-6D80-4BE3-A9AD-90B46A54857C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F2FFF74-59EC-4431-8098-BA376D7DA091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2FFF74-59EC-4431-8098-BA376D7DA091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2FFF74-59EC-4431-8098-BA376D7DA091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2FFF74-59EC-4431-8098-BA376D7DA091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF0D2CE4-6D80-4BE3-A9AD-90B46A54857C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF0D2CE4-6D80-4BE3-A9AD-90B46A54857C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF0D2CE4-6D80-4BE3-A9AD-90B46A54857C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF0D2CE4-6D80-4BE3-A9AD-90B46A54857C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E540E35-8847-4DFF-9F9B-FCC0401B1275}
+	EndGlobalSection
+EndGlobal
