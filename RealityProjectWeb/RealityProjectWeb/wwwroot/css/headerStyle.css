@@ -1,0 +1,119 @@
+header{
+    margin: 0 7vh;
+    margin-top: 3vh;
+    margin-bottom: 5vh;
+}
+
+.infoBox{
+    justify-content: space-between;
+    display: flex;
+    padding-bottom: 1.5vh;
+    margin-bottom: 1.5vh;
+    border-bottom: solid lightgray 0.3vh;
+}
+
+.info{
+    display: flex;
+
+}
+
+.info img{
+    width: 2vh;
+    height: 2vh;
+   margin-right: 1vh;
+}
+
+.info div{
+    
+    font-size: 1rem;
+    text-align: end;
+}
+
+header nav a img{
+    width: 20vw;
+}
+
+header nav{
+    display: flex;
+    justify-content: space-between;
+}
+header nav div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav div a{
+    font-family: Myriad Pro Bold;
+    margin-left: 5vh;
+    display: inline;
+    color: black;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5vh;
+    text-decoration-color: transparent;
+
+    transition: text-decoration-color 200ms;
+}
+
+header nav div a:hover{
+    color:black !important;
+    text-decoration-color: rgb(166, 166, 3);
+}
+
+@media only screen and (max-width: 1050px)
+{
+    header nav a img{
+        width: 30vw;
+    }
+}
+
+
+@media only screen and (max-width: 650px)
+{
+    header nav div{
+        flex-direction: column;
+        justify-content: start;
+    }
+    header nav{
+        display: block;
+        margin-left: 5vh;
+        margin-right: 5vh;
+    }
+
+    header nav div a{
+
+        margin-left: 0;
+        margin-bottom: 1vh;
+        padding: 1vh;
+        width: 100%;
+        text-align: center;
+        border: 0.1vh solid #dadada;
+        border-radius: 1vh;
+        transition: background-color 100ms;
+    }
+    
+    header nav div a:hover{
+        background-color: #dadada;
+    }
+
+    header nav a img{
+        display: block;
+        margin: 0 auto;
+        width: 60vw;
+        margin-bottom: 2vh;
+    }
+    .info img{
+        display: none;
+    }
+    .info{
+        padding: 0 1vh;
+    }
+
+    header{
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+}

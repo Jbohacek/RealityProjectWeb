@@ -1,0 +1,32 @@
+#main-img{
+    min-width: 100%;
+    max-width: 100%;
+}
+
+#sec-imgs{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3vh;
+    gap: 1vw;
+}
+#sec-imgs img{
+    width: 100%
+
+}
+
+
+@media only screen and (max-width: 1300px)
+{
+    #sec-imgs{
+        display: grid;
+        gap: 2vh;
+        justify-items: center;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        height: 100%;
+    }
+    #sec-imgs img{
+        width: 70%;
+        
+    }
+}

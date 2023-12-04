@@ -2,45 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - RealityProjectWeb</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/RealityProjectWeb.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css"/>    
+    <link rel="stylesheet" href="~/css/headerStyle.css" />
+    <link rel="stylesheet" href="~/css/footerStyle.css" />
+    @await RenderSectionAsync("Styles",false)
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RealityProjectWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="infoBox">
+            <div class="info">
+                <img src="References/podklady/emailIcon.png" alt="">
+                <a href="mailto:info@realintense.org">info@realintense.org</a>
+            </div>
+            <div class="info">
+                <img src="References/podklady/phoneIcon.png" alt="">
+                <a href="tel:+420 777 666 777">+420 777 666 777</a>
+            </div>
+        </div>
+        <nav>
+            <a href="#">
+                <img src="References/podklady/logo-dark.png" alt="">
+            </a>
+            <div class="navigation">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Home" asp-action="Index">Catalog</a>
+                <a href="#info">Kontakt</a>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    
+    @RenderBody()
+     
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - RealityProjectWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer id="info">
+        <article class="newsletter">
+            <h5>Newsletter</h5>
+            <p>Keep up with the latest company news and events. Enter your e-mail and subscribe to our newsletter.</p>
+            <form method="post" action="sendMail">
+                <input type="email" required name="email">
+                <button type="submit">Odeslat</button>
+            </form>
+        </article>
+        <nav class="links">
+            <h5>Užitečné odkazy</h5>
+            <ul>
+                <li><a href="#">Byty pronájem</a></li>
+                <li><a href="/Details/Detail1.html">Byty prodej</a></li>
+                <li><a href="#">Domy pronájem</a></li>
+                <li><a href="#">Domy prodej</a></li>
+            </ul>
+        </nav>
+        <article class="news">
+            <h5>Novinky</h5>
+            <div>
+                <h6>14.5.2016</h6>
+                <p>Lorem Ipsum je demonstrativní výplňový text používaný v tiskařském a knihařském průmyslu. Lorem Ipsum je považováno za standard v této oblasti už od začátku 16. stoletíňový text používaný v </p>
+            </div>
+            <div>
+                <h6>14.5.2016</h6>
+                <p>Lorem Ipsum je demonstrativní výplňový text používaný v tiskařském a knihařském průmyslu. Lorem Ipsum je považováno za standard v této oblasti už od začátku 16. stoletíňový text používaný v </p>
+            </div>
+        </article>
     </footer>
+    <div id="Copyright">Copyright 2016 - Real estate</div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
