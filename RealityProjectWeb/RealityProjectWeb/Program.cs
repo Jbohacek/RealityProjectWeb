@@ -40,7 +40,7 @@ namespace RealityProjectWeb
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

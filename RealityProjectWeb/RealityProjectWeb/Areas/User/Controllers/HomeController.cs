@@ -2,8 +2,9 @@
 using RealityProjectWeb.Models;
 using System.Diagnostics;
 
-namespace RealityProjectWeb.Controllers
+namespace RealityProjectWeb.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
