@@ -5,9 +5,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using RealityProject.DataAccess.Repos.Adds;
-using RealityProject.DataAccess.Repos.Images;
-using RealityProject.DataAccess.Repos.Parameters;
+using RealityProject.DataAccess.DataModels.Adds;
+using RealityProject.DataAccess.DataModels.Images;
+using RealityProject.DataAccess.DataModels.Parameters;
 
 namespace RealityProject.DataAccess.Data
 {

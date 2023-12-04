@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RealityProject.DataAccess.Data;
+using RealityProject.DataAccess.Repository;
 
 namespace RealityProjectWeb
 {
@@ -15,6 +16,8 @@ namespace RealityProjectWeb
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("LocalServer")
             ));
+
+            builder.Services.AddScoped<UnitOfWork>();
 
             var app = builder.Build();
 

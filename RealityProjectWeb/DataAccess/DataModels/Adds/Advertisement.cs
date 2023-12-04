@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RealityProject.DataAccess.DataModels.Images;
+using RealityProject.DataAccess.DataModels.Parameters;
 using RealityProject.DataAccess.Enums;
-using RealityProject.DataAccess.Repos.Images;
-using RealityProject.DataAccess.Repos.Parameters;
 
-namespace RealityProject.DataAccess.Repos.Adds
+namespace RealityProject.DataAccess.DataModels.Adds
 {
     [Table("tbAdvertisements")]
     public class Advertisement

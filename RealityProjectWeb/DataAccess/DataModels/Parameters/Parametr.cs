@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RealityProject.DataAccess.Repos.Adds;
+using RealityProject.DataAccess.DataModels.Adds;
 
-namespace RealityProject.DataAccess.Repos.Parameters
+namespace RealityProject.DataAccess.DataModels.Parameters
 {
     [Table("tbParameters")]
     public class Parameter

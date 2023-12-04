@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Repos\User\" />
+    <Folder Include="DataModels\User\" />
   </ItemGroup>
 
   <ItemGroup>
