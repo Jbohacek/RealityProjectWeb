@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RealityProject.DataAccess.Data;
 using RealityProject.DataAccess.Repository;
@@ -18,6 +19,7 @@ namespace RealityProjectWeb
             ));
 
             builder.Services.AddScoped<UnitOfWork>();
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -35,12 +37,20 @@ namespace RealityProjectWeb
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "Admin",
+                    defaults: new { Controller = "LogIn", Action = "Index", Area = "Admin"}
+                );
+                app.MapControllerRoute(
+                    name: "default",
+                    pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
+            });
 
             app.Run();
         }

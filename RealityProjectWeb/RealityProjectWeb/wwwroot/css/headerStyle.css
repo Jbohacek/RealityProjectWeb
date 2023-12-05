@@ -29,6 +29,10 @@ header{
     text-align: end;
 }
 
+.info a:hover{
+    color:black !important;
+}
+
 header nav a img{
     width: 20vw;
 }
