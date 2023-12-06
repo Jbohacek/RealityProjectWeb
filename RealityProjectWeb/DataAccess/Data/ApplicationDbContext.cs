@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using RealityProject.DataAccess.DataModels.Adds;
 using RealityProject.DataAccess.DataModels.Images;
 using RealityProject.DataAccess.DataModels.Parameters;
+using RealityProject.DataAccess.DataModels.UserManagement;
 
 namespace RealityProject.DataAccess.Data
 {
@@ -16,7 +17,9 @@ namespace RealityProject.DataAccess.Data
         public DbSet<Advertisement> Advertisements { get; set; } = null!;
         public DbSet<Parameter> Parameters { get; set; } = null!;
         public DbSet<Photo> Photos { get; set; } = null!;
-        
+
+        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Role> Roles { get; set; } = null!;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -38,6 +41,7 @@ namespace RealityProject.DataAccess.Data
             modelBuilder.Entity<Advertisement>()
                 .HasOne(x => x.Photo).WithOne(x => x.MainPhoto);
 
+            modelBuilder.Entity<User>().HasOne(x => x.UserRole).WithMany(x => x.Users).HasForeignKey("RoleId");
 
         }
     }

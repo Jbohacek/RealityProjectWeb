@@ -15,7 +15,7 @@ namespace RealityProject.DataAccess.DataModels.Adds
     public class Advertisement
     {
         [Key]
-        public Guid AdvertisementId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public HomeTypes HomeType { get; set; }

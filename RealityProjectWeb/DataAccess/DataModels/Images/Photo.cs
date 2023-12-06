@@ -13,7 +13,7 @@ namespace RealityProject.DataAccess.DataModels.Images
     public class Photo
     {
         [Key]
-        public Guid PhotoId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string FotoName { get; set; } = null!;

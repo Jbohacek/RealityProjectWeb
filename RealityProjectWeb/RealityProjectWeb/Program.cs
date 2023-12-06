@@ -21,6 +21,10 @@ namespace RealityProjectWeb
             builder.Services.AddScoped<UnitOfWork>();
             builder.Services.AddSession();
 
+            var passwordKeys = builder.Configuration.GetSection("PasswordKeys");
+            DataEncryption.SetKey(passwordKeys.GetSection("Key").Value);
+            DataEncryption.SetIv(passwordKeys.GetSection("Iv").Value);
+
             var app = builder.Build();
 
             

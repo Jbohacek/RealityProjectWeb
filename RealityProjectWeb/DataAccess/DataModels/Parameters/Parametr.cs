@@ -13,7 +13,7 @@ namespace RealityProject.DataAccess.DataModels.Parameters
     public class Parameter
     {
         [Key]
-        public Guid ParameterId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string Name { get; set; } = null!;
