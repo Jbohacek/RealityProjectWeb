@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealityProject.DataAccess.Data;
 
@@ -11,9 +12,10 @@ using RealityProject.DataAccess.Data;
 namespace RealityProject.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206152930_AddUserRoles")]
+    partial class AddUserRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,51 +84,13 @@ namespace RealityProject.DataAccess.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IdPhoto")
                         .IsUnique()
                         .HasFilter("[IdPhoto] IS NOT NULL");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("tbAdvertisements");
-                });
-
-            modelBuilder.Entity("RealityProject.DataAccess.DataModels.Adds.Request", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AdvertisementId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdvertisementId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("tbRequest");
                 });
 
             modelBuilder.Entity("RealityProject.DataAccess.DataModels.Images.Photo", b =>
@@ -216,9 +180,6 @@ namespace RealityProject.DataAccess.Migrations
                     b.Property<bool>("IsEmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsValid")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -280,32 +241,7 @@ namespace RealityProject.DataAccess.Migrations
                         .WithOne("MainPhoto")
                         .HasForeignKey("RealityProject.DataAccess.DataModels.Adds.Advertisement", "IdPhoto");
 
-                    b.HasOne("RealityProject.DataAccess.DataModels.UserManagement.User", "Seller")
-                        .WithMany("Advertisements")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Photo");
-
-                    b.Navigation("Seller");
-                });
-
-            modelBuilder.Entity("RealityProject.DataAccess.DataModels.Adds.Request", b =>
-                {
-                    b.HasOne("RealityProject.DataAccess.DataModels.Adds.Advertisement", "Advertisement")
-                        .WithMany("Requests")
-                        .HasForeignKey("AdvertisementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RealityProject.DataAccess.DataModels.UserManagement.User", "User")
-                        .WithMany("Requests")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Advertisement");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("RealityProject.DataAccess.DataModels.UserManagement.User", b =>
@@ -319,11 +255,6 @@ namespace RealityProject.DataAccess.Migrations
                     b.Navigation("UserRole");
                 });
 
-            modelBuilder.Entity("RealityProject.DataAccess.DataModels.Adds.Advertisement", b =>
-                {
-                    b.Navigation("Requests");
-                });
-
             modelBuilder.Entity("RealityProject.DataAccess.DataModels.Images.Photo", b =>
                 {
                     b.Navigation("MainPhoto");
@@ -332,13 +263,6 @@ namespace RealityProject.DataAccess.Migrations
             modelBuilder.Entity("RealityProject.DataAccess.DataModels.UserManagement.Role", b =>
                 {
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("RealityProject.DataAccess.DataModels.UserManagement.User", b =>
-                {
-                    b.Navigation("Advertisements");
-
-                    b.Navigation("Requests");
                 });
 #pragma warning restore 612, 618
         }

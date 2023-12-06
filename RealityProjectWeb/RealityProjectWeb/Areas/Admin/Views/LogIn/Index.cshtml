@@ -29,10 +29,9 @@
             <div class="row button">
                 <input type="submit" value="Login">
             </div>
-            @if (ViewBag.Valid == false)
-            {
-                <div class="signup-link">Wrong credentials !</div>
-            }
+            
+            <div class="signup-link">@ViewBag.Valid</div>
+            
         </form>
     </div>
 </div>

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace RealityProject.DataAccess.DataModels.UserManagement
 {
@@ -17,6 +18,6 @@ namespace RealityProject.DataAccess.DataModels.UserManagement
 
         [Required] public bool IsValid { get; set; } = true;
 
-        public ICollection<User> Users { get; set; } = null!;
+        [JsonIgnore]public virtual ICollection<User> Users { get; set; } = null!;
     }
 }

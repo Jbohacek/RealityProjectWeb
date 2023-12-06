@@ -16,6 +16,8 @@ namespace RealityProject.DataAccess.Repository
         public AdvertisementRepository Advertisements;
         public PhotoRepository Photos;
         public ParameterRepository Parameters;
+        public UserRepository Users;
+        public RoleRepository Roles;
 
 
         public UnitOfWork(ApplicationDbContext database)
@@ -25,6 +27,8 @@ namespace RealityProject.DataAccess.Repository
             Advertisements = new AdvertisementRepository(database);
             Photos = new PhotoRepository(database);
             Parameters = new ParameterRepository(database);
+            Users = new UserRepository(database);
+            Roles = new RoleRepository(database);
         }
 
         public void Save()

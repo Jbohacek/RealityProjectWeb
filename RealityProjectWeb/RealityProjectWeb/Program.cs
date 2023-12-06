@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RealityProject.DataAccess.Data;
 using RealityProject.DataAccess.Repository;
+using System.Text.Json.Serialization;
 
 namespace RealityProjectWeb
 {
@@ -13,6 +14,7 @@ namespace RealityProjectWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
 
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("AspifyConnection")

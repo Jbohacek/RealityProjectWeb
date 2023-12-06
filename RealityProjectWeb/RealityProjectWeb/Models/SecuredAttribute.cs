@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
+using RealityProject.DataAccess.Models;
+using Results = RealityProject.DataAccess.Enums.Results;
 
 namespace RealityProjectWeb.Models
 {
@@ -12,14 +15,14 @@ namespace RealityProjectWeb.Models
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            Controller ctrl = (Controller)context.Controller;
+            BaseController ctrl = (BaseController)context.Controller;
 
-            if (ctrl.HttpContext.Session.GetString("login") == null)
+            if (ctrl.Credential.Result != Results.Success)
             {
-                string c = ctrl.ControllerContext.RouteData.Values["controller"].ToString();
-                string a = ctrl.ControllerContext.RouteData.Values["action"].ToString();
+                //string c = ctrl.ControllerContext.RouteData.Values["controller"].ToString();
+                //string a = ctrl.ControllerContext.RouteData.Values["action"].ToString();
 
-                context.Result = new RedirectToActionResult("Index", "Login", new { next = $"{c}:{a}" });
+                context.Result = new RedirectToActionResult("Index", "LogIn","");
             }
         }
     }

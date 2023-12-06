@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RealityProject.DataAccess.DataModels.Images;
 using RealityProject.DataAccess.DataModels.Parameters;
+using RealityProject.DataAccess.DataModels.UserManagement;
 using RealityProject.DataAccess.Enums;
 
 namespace RealityProject.DataAccess.DataModels.Adds
@@ -56,5 +57,9 @@ namespace RealityProject.DataAccess.DataModels.Adds
 
         [ForeignKey("Photo")] public Guid? IdPhoto { get; set; }
         public virtual Photo? Photo { get; set; }
+
+        public virtual User Seller { get; set; } = null!;
+
+        public virtual ICollection<Request> Requests { get; set; } = null!;
     }
 }

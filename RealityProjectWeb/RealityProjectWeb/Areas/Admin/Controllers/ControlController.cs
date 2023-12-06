@@ -7,11 +7,11 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
     [Area("Admin"),Secured]
     public class ControlController : BaseController
     {
-        private readonly UnitOfWork _unitOfWork;
+        
 
-        public ControlController(UnitOfWork unitOfWork)
+        public ControlController(UnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
+            
         }
 
         public IActionResult Index()
@@ -21,7 +21,7 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
 
         public IActionResult Inzeraty()
         {
-            return View(_unitOfWork.Advertisements.GetAll());
+            return View(base.Database.Advertisements.GetAll());
         }
     }
 }

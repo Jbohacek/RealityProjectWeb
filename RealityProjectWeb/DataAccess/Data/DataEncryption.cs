@@ -10,8 +10,8 @@ namespace RealityProject.DataAccess.Data
 {
     public static class DataEncryption
     {
-        public static byte[] Key = new byte[8] { 1, 2, 3, 4, 5, 6, 7, 8 };
-        public static byte[] Iv = new byte[8] { 1, 2, 3, 4, 5, 6, 7, 8 };
+        public static byte[] Key = new byte[8] ;
+        public static byte[] Iv = new byte[8] ;
 
         public static string Crypt(this string text)
         {
