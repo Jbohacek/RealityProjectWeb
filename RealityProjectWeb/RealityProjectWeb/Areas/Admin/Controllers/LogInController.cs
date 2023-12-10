@@ -46,6 +46,9 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
                     case Results.WrongUserName:
                         return Redirect("Index?reasonMessage=Wrong Username!");
                         break;
+                    case Results.NoAdmin:
+                        return Redirect("Index?reasonMessage=Only Admin!");
+                        break;
                 }
                 return Redirect("Index?valid=false");
             }

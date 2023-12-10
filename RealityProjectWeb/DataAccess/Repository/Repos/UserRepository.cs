@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using RealityProject.DataAccess.Data;
 using RealityProject.DataAccess.DataModels.UserManagement;
@@ -19,6 +20,8 @@ namespace RealityProject.DataAccess.Repository.Repos
 
         public Credentials LogIn(string userName, string password)
         {
+            
+
             var users = base.GetAll("UserRole").Where(x => x.Username == userName).ToList();
 
 
@@ -34,6 +37,11 @@ namespace RealityProject.DataAccess.Repository.Repos
                 return new Credentials(Results.WrongPassword);
             }
 
+            if (selectedUser.UserRole.Name != "Admin")
+            {
+                return new Credentials(Results.NoAdmin);
+            }
+
             return new Credentials(Results.Success, selectedUser.UserRole, selectedUser);
         }
 
@@ -47,6 +55,23 @@ namespace RealityProject.DataAccess.Repository.Repos
 
             user.Password = user.Password.Crypt();
             base.Add(user);
+        }
+
+        public new void Update(User user)
+        {
+            user.Password = user.Password.Crypt();
+            base.Update(user);
+        }
+
+
+        public User? GetAllInformation(Guid id)
+        {
+            var dat = base.GetAll("UserRole,Advertisements,Requests,ProfilePicture").FirstOrDefault(x => x.Id == id);
+
+            if (dat != null)
+                dat.Password = dat.Password.Decrypt();
+
+            return dat;
         }
     }
 }

@@ -2,11 +2,14 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography;
 using RealityProject.DataAccess.DataModels.Adds;
+using RealityProject.DataAccess.DataModels.Images;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 
 namespace RealityProject.DataAccess.DataModels.UserManagement
 {
     [Table("tbUser")]
-    public class User
+    public class User : ITable
     {
         [Key] public Guid Id { get; set; }
 
@@ -29,10 +32,13 @@ namespace RealityProject.DataAccess.DataModels.UserManagement
             return FirstName + " " + LastName;
         }
 
-        public Role UserRole { get; set; } = null!;
+        [ValidateNever] public Role UserRole { get; set; } = null!;
 
-        public virtual ICollection<Advertisement> Advertisements { get; set; } = null!;
-        public virtual ICollection<Request> Requests { get; set; } = null!;
+        [ForeignKey("Photo")]public Guid? ProfilePicId { get; set; }
+        public Photo? ProfilePicture { get; set; } = null!;
+
+        [ValidateNever] public virtual ICollection<Advertisement> Advertisements { get; set; } = null!;
+        [ValidateNever] public virtual ICollection<Request> Requests { get; set; } = null!;
 
     }
 }

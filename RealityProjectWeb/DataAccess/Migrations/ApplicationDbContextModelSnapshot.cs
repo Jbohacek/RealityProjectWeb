@@ -138,23 +138,20 @@ namespace RealityProject.DataAccess.Migrations
                     b.Property<Guid?>("AdvertisementId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("FotoName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FotoPath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double?>("Size")
                         .HasColumnType("float");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("tbPhotos");
                 });
@@ -229,6 +226,9 @@ namespace RealityProject.DataAccess.Migrations
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ProfilePicId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
@@ -308,6 +308,15 @@ namespace RealityProject.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("RealityProject.DataAccess.DataModels.Images.Photo", b =>
+                {
+                    b.HasOne("RealityProject.DataAccess.DataModels.UserManagement.User", "ProfilePicture")
+                        .WithOne("ProfilePicture")
+                        .HasForeignKey("RealityProject.DataAccess.DataModels.Images.Photo", "UserId");
+
+                    b.Navigation("ProfilePicture");
+                });
+
             modelBuilder.Entity("RealityProject.DataAccess.DataModels.UserManagement.User", b =>
                 {
                     b.HasOne("RealityProject.DataAccess.DataModels.UserManagement.Role", "UserRole")
@@ -337,6 +346,9 @@ namespace RealityProject.DataAccess.Migrations
             modelBuilder.Entity("RealityProject.DataAccess.DataModels.UserManagement.User", b =>
                 {
                     b.Navigation("Advertisements");
+
+                    b.Navigation("ProfilePicture")
+                        .IsRequired();
 
                     b.Navigation("Requests");
                 });

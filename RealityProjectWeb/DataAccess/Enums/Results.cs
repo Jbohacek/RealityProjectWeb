@@ -12,5 +12,6 @@ namespace RealityProject.DataAccess.Enums
         WrongPassword,
         WrongUserName,
         NotLogged,
+        NoAdmin
     }
 }

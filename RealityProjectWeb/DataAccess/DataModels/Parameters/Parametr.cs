@@ -10,7 +10,7 @@ using RealityProject.DataAccess.DataModels.Adds;
 namespace RealityProject.DataAccess.DataModels.Parameters
 {
     [Table("tbParameters")]
-    public class Parameter
+    public class Parameter : ITable
     {
         [Key]
         public Guid Id { get; set; }

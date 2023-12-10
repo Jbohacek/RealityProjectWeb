@@ -10,7 +10,7 @@ using RealityProject.DataAccess.DataModels.UserManagement;
 namespace RealityProject.DataAccess.DataModels.Adds
 {
     [Table("tbRequest")]
-    public class Request
+    public class Request : ITable
     {
         [Key]public Guid Id { get; set; }
 

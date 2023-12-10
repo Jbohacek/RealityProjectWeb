@@ -1,0 +1,103 @@
+﻿@model RealityProject.DataAccess.DataModels.UserManagement.User
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewBag.Title = $"{Model.Username} edit";
+    //Layout = "_Layout_Admin";
+}
+
+<h2 class="display-3 my-5">@Model.Username</h2>
+
+
+<form method="post" EncType="multipart/form-data" asp-action="Upsert">
+    
+    <div asp-validation-summary="All"></div>
+
+    <div class="row">
+        <div class="col-8">
+            
+            <input asp-for="Id" class="d-none" type="text"/>
+            <input asp-for="ProfilePicId" class="d-none" type="text"/>
+            
+
+            @* UserName *@
+            <div class="form-floating mb-3">
+                <input asp-for="Username" type="text" class="form-control" id="floatingInputUserName" placeholder="UserName">
+                <label for="floatingInputUserName">UserName</label>
+            </div>
+
+            @* FirstName and LastName *@
+            <div class="d-flex justify-content-between mb-3">
+                <div class="form-floating w-50 me-2">
+                    <input asp-for="FirstName" type="text" class="form-control" id="floatingInputFirstName" placeholder="FirstName">
+                    <label for="floatingInputFirstName">FirstName</label>
+                </div>
+                <div class=" form-floating w-50">
+                    <input asp-for="LastName" type="text" class="form-control" id="floatingInputLastName" placeholder="LastName">
+                    <label for="floatingInputLastName">LastName</label>
+                </div>
+            </div>
+
+            @* Email *@
+            <div class="form-floating mb-3">
+                <input asp-for="Email" type="text" class="form-control" id="floatingInputEmail" placeholder="Email">
+                <label for="floatingInputEmail">Email</label>
+            </div>
+
+            @* Phone *@
+            <div class="form-floating mb-3">
+                <input asp-for="Phone" type="tel" class="form-control" id="floatingInputTel" placeholder="Telephone">
+                <label for="floatingInputTel">Telephone</label>
+            </div>
+
+            @* Password *@
+            <div class="form-floating mb-3">
+                <input asp-for="Password" type="text" class="form-control" id="floatingInputPass" placeholder="Password">
+                <label for="floatingInputPass">Password</label>
+            </div>
+            
+            @* UserRole *@
+            <div class="form-floating mb-3">
+                <select asp-for="UserRole.Id" asp-items="@ViewBag.Roles" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                </select>
+                <label for="floatingSelect">Role</label>
+            </div>
+
+
+
+        </div>
+        <div class="col-4">
+            
+            @if (Model.ProfilePicture != null)
+            {
+                <img src="@Model.ProfilePicture.GetPath()" class="rounded w-100" alt="...">
+            }
+            else
+            {
+                <img src="~/Pictures/Defaults/profile.png" class="rounded w-100" alt="...">
+            }
+            
+
+            <div class="mb-3">
+                <input name="file" class="form-control" type="file" id="file">
+            </div>
+
+            @* IsEmailConfirmed IsBlocked IsValid *@
+            <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic checkbox toggle button group">
+                <input asp-for="IsEmailConfirmed" type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck1">Email Confirmed</label>
+
+                <input asp-for="IsValid" type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck2">Valid</label>
+
+                <input asp-for="IsBlocked" type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck3">Is Blocked</label>
+            </div>
+        </div>
+
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+        <a asp-action="Index" class="btn btn-secondary px-3 py-1 fs-4">GoBack</a>
+        <button type="submit" class="btn btn-primary px-3 py-1 fs-4">Save</button>
+    </div>
+</form>

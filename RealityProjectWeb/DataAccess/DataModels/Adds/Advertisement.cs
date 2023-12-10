@@ -13,7 +13,7 @@ using RealityProject.DataAccess.Enums;
 namespace RealityProject.DataAccess.DataModels.Adds
 {
     [Table("tbAdvertisements")]
-    public class Advertisement
+    public class Advertisement : ITable
     {
         [Key]
         public Guid Id { get; set; }

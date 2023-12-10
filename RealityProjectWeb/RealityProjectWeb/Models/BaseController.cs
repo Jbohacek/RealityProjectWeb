@@ -26,14 +26,25 @@ namespace RealityProjectWeb.Models
         }
 
         public UnitOfWork Database { get; set; } = null!;
-        public Credentials Credential { get; set; } 
-        
+        public Credentials Credential { get; set; }
+        public IWebHostEnvironment WebHostEnvironment { get; set; } = null!;
+
+
+        protected BaseController(UnitOfWork database, IWebHostEnvironment webHostEnvironment)
+        {
+            Database = database;
+            Credential = new Credentials(Results.NotLogged);
+            WebHostEnvironment = webHostEnvironment;
+        }
 
         protected BaseController(UnitOfWork database)
         {
             Database = database;
             Credential = new Credentials(Results.NotLogged);
+            
         }
+
+
 
         protected BaseController()
         {

@@ -6,23 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealityProject.DataAccess.DataModels.Adds;
+using RealityProject.DataAccess.DataModels.UserManagement;
+using RealityProject.DataAccess.Enums;
 
 namespace RealityProject.DataAccess.DataModels.Images
 {
     [Table(@"tbPhotos")]
-    public class Photo
+    public class Photo : ITable
     {
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
-        public string FotoName { get; set; } = null!;
-
-        [Required]
-        public string FotoPath { get; set; } = null!;
-
-        [MaxLength(10)]
-        public string Type { get; set; } = null!;
+        public PhotoTypes Type { get; set; }
 
         public double? Size { get; set; }
 
@@ -30,5 +25,17 @@ namespace RealityProject.DataAccess.DataModels.Images
 
         [ForeignKey("Advertisement")] public Guid? AdvertisementId { get; set; }
         public virtual Advertisement? MainPhoto { get; set; }
+
+        [ForeignKey("User")] public Guid? UserId { get; set; }
+        public virtual User? ProfilePicture { get; set; }
+
+        
+        public string GetPath()
+        {
+            var url = $"/Pictures/{Type.ToString()}/{Id}.png";
+            return url;
+
+        }
+
     }
 }

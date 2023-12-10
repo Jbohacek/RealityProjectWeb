@@ -63,6 +63,9 @@ namespace RealityProject.DataAccess.Data
                 .WithMany(x => x.Requests)
                 .HasForeignKey("UserId")
                 .IsRequired(false);
+
+            modelBuilder.Entity<User>()
+                .HasOne(x => x.ProfilePicture).WithOne(x => x.ProfilePicture);
         }
     }
 }

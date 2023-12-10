@@ -18,10 +18,10 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" asp-area="Admin" asp-controller="Control" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Users</a>
+                        <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Recent activity</a>
@@ -31,9 +31,9 @@
                             Control
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Users</a></li>
+                            <li><a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a></li>
                             <li><a class="dropdown-item" asp-controller="Control" asp-action="Inzeraty">Advertisements</a></li>
-                            <li><a class="dropdown-item" href="#">Reviews</a></li>
+                            <li><a class="dropdown-item"  href="#">Reviews</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -44,7 +44,9 @@
         </div>
     </nav>
     
+<div class="container">
     @RenderBody()
+</div>
 
     
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

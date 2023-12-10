@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace RealityProject.DataAccess.DataModels.UserManagement
 {
     [Table("tbRoles")]
-    public class Role
+    public class Role : ITable
     {
         [Key] public Guid Id { get; set; }
 

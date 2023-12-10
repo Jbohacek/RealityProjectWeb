@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using RealityProject.DataAccess.DataModels;
 
 namespace RealityProject.DataAccess.Repository
 {
-    public abstract class Repo<T> where T : class
+    public abstract class Repo<T> where T : class, ITable
     {
         private readonly ApplicationDbContext Context;
         internal DbSet<T> DbSet { get; set; }
@@ -53,6 +54,10 @@ namespace RealityProject.DataAccess.Repository
 
         public void Add(T item)
         {
+            if (item.Id == Guid.Empty)
+            {
+                item.Id = new Guid();
+            }
             Context.Add(item);
         }
 
@@ -60,6 +65,13 @@ namespace RealityProject.DataAccess.Repository
         {
             Context.Remove(item);
         }
+
+        public void Update(T item)
+        {
+            Context.Update(item);
+        }
+
+            
 
         public void RemoveRange(IEnumerable<T> items)
         {
