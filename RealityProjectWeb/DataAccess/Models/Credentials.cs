@@ -17,7 +17,7 @@ namespace RealityProject.DataAccess.Models
         public Role UserRole { get; set; } = null!;
         public DateTime CreationDate { get; set; }
         public string UserName { get; set; } = string.Empty;
-
+        
 
         public Credentials(Results result,Role userRole, User user)
         {

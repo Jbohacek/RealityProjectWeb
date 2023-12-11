@@ -37,7 +37,7 @@ namespace RealityProject.DataAccess.Repository.Repos
                 return new Credentials(Results.WrongPassword);
             }
 
-            if (selectedUser.UserRole.Name != "Admin")
+            if (selectedUser.UserRole.Name == "User")
             {
                 return new Credentials(Results.NoAdmin);
             }

@@ -68,7 +68,7 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
         {
             this.HttpContext.Session.Remove("login");
 
-            return Redirect("/User/Home");
+            return Redirect("/Admin/");
         }
     }
 }

@@ -56,12 +56,26 @@
                 <label for="floatingInputPass">Password</label>
             </div>
             
-            @* UserRole *@
-            <div class="form-floating mb-3">
-                <select asp-for="UserRole.Id" asp-items="@ViewBag.Roles" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                </select>
-                <label for="floatingSelect">Role</label>
-            </div>
+            @if (ViewBag.Login.UserRole.Name == "Admin")
+            {
+                @* UserRole *@
+                <div class="form-floating mb-3">
+                    <select asp-for="UserRole.Id" asp-items="@ViewBag.Roles" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    </select>
+                    <label for="floatingSelect">Role</label>
+                </div>
+            }
+            else
+            {
+                @* UserRole *@
+                <div class="form-floating mb-3 d-none">
+                    <select asp-for="UserRole.Id" asp-items="@ViewBag.Roles" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    </select>
+                    <label for="floatingSelect">Role</label>
+                </div>
+            }
+
+            
 
 
 
@@ -81,23 +95,47 @@
             <div class="mb-3">
                 <input name="file" class="form-control" type="file" id="file">
             </div>
+            
+            @if (ViewBag.Login.UserRole.Name == "Admin")
+            {
+                <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic checkbox toggle button group">
+                    <input asp-for="IsEmailConfirmed" type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck1">Email Confirmed</label>
 
+                    <input asp-for="IsValid" type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck2">Valid</label>
+
+                    <input asp-for="IsBlocked" type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck3">Is Blocked</label>
+                </div>
+            }
+            else
+            {
+                <div class="btn-group d-flex justify-content-center d-none" role="group" aria-label="Basic checkbox toggle button group">
+                    <input asp-for="IsEmailConfirmed" type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck1">Email Confirmed</label>
+
+                    <input asp-for="IsValid" type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck2">Valid</label>
+
+                    <input asp-for="IsBlocked" type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck3">Is Blocked</label>
+                </div>
+            }
             @* IsEmailConfirmed IsBlocked IsValid *@
-            <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic checkbox toggle button group">
-                <input asp-for="IsEmailConfirmed" type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btncheck1">Email Confirmed</label>
-
-                <input asp-for="IsValid" type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btncheck2">Valid</label>
-
-                <input asp-for="IsBlocked" type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btncheck3">Is Blocked</label>
-            </div>
+            
         </div>
 
     </div>
     <div class="d-flex justify-content-between mt-3">
-        <a asp-action="Index" class="btn btn-secondary px-3 py-1 fs-4">GoBack</a>
+        @if (ViewBag.Login.UserRole.Name == "Admin")
+        {
+            <a asp-action="Index" class="btn btn-secondary px-3 py-1 fs-4">GoBack</a>
+        }
+        else
+        {
+            <a asp-controller="Control" asp-action="Index" class="btn btn-secondary px-3 py-1 fs-4">GoBack</a> 
+        }
         <button type="submit" class="btn btn-primary px-3 py-1 fs-4">Save</button>
     </div>
 </form>

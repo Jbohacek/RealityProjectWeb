@@ -18,6 +18,7 @@ namespace RealityProject.DataAccess.Repository
         public ParameterRepository Parameters;
         public UserRepository Users;
         public RoleRepository Roles;
+        public GroupRepository Groups;
 
 
         public UnitOfWork(ApplicationDbContext database)
@@ -29,6 +30,7 @@ namespace RealityProject.DataAccess.Repository
             Parameters = new ParameterRepository(database);
             Users = new UserRepository(database);
             Roles = new RoleRepository(database);
+            Groups = new GroupRepository(database);
         }
 
         public void Save()

@@ -1,0 +1,22 @@
+﻿th {
+    background-color: #49be9c !important;
+}
+
+.Button {
+    padding: 10px;
+    border-radius: 10%;
+    color: white;
+    background-color: #1c6972;
+    cursor: pointer;
+    transition: color 50ms;
+    text-decoration: none;
+}
+
+.Button:hover {
+    color: #bebebe;
+    text-decoration: none;
+}
+
+a {
+    cursor: pointer !important;
+}

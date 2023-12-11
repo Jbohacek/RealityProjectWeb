@@ -16,6 +16,7 @@ namespace RealityProject.DataAccess.Data
     {
         public DbSet<Advertisement> Advertisements { get; set; } = null!;
         public DbSet<Parameter> Parameters { get; set; } = null!;
+        public DbSet<Group> Groups { get; set; } = null!;
         public DbSet<Request> Requests { get; set; } = null!;
 
         public DbSet<Photo> Photos { get; set; } = null!;

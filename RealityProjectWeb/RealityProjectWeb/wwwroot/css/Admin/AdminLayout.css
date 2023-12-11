@@ -1,0 +1,13 @@
+﻿.nav-tabs .nav-link {
+    font-size: 30px;
+}
+
+#SideBar .nav-link {
+    transition: 100ms;
+}
+
+
+#SideBar .nav-link:hover {
+    margin-left: 0.6vw;
+    transition: 100ms;
+}

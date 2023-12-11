@@ -16,10 +16,9 @@ namespace RealityProject.DataAccess.DataModels.Parameters
         public Guid Id { get; set; }
 
         [Required]
-        public string Name { get; set; } = null!;
-
-        [Required]
         public string Value { get; set; } = null!;
+
+        public Group Group { get; set; } = null!;
 
         public virtual ICollection<Advertisement> Advertisements { get; set; } = null!;
     }

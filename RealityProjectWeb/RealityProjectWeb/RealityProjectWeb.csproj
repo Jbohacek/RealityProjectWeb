@@ -39,6 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Advertisement\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Parameter\Components\GroupAdd\Default.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\User\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\Control\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\User\Upsert.cshtml" />
@@ -50,6 +52,14 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Areas\Admin\Views\User\Upsert.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Admin\Views\Parameter\Components\GroupAdd\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Admin\Views\Advertisement\Index.cshtml" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using RealityProject.DataAccess.Repository;
 using RealityProjectWeb.Models;
 
 namespace RealityProjectWeb.Areas.Admin.Controllers
 {
-    [Area("Admin"),Secured]
+    [Area("Admin"),Secured("Seller")]
     public class ControlController : BaseController
     {
         
@@ -19,9 +20,10 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult Inzeraty()
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            return View(base.Database.Advertisements.GetAll());
+            ViewBag.HomePage = "active";
+            base.OnActionExecuting(context);
         }
     }
 }

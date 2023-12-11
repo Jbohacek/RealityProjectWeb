@@ -131,3 +131,14 @@ form .signup-link a:hover {
 .signup-link{
     color: red !important;
 }
+
+
+#GoBack {
+    color: #255144;
+    text-decoration: none;
+    transition: 60ms;
+}
+
+#GoBack:hover {
+    filter: brightness(20%);
+}

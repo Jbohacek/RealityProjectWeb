@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Security.Policy;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using RealityProject.DataAccess.Models;
@@ -8,6 +9,18 @@ namespace RealityProjectWeb.Models
 {
     public class SecuredAttribute : Attribute, IActionFilter
     {
+        public SecuredAttribute()
+        {
+            _role = "Admin";
+        }
+
+        public SecuredAttribute(string role)
+        {
+            _role = role;
+        }
+
+        private readonly string _role;
+
         public void OnActionExecuted(ActionExecutedContext context)
         {
 
@@ -24,6 +37,18 @@ namespace RealityProjectWeb.Models
 
                 context.Result = new RedirectToActionResult("Index", "LogIn","");
             }
+
+            if (ctrl.Credential.UserRole.Name != "Admin")
+            {
+                if (ctrl.Credential.UserRole.Name != _role)
+                {
+                    context.Result = new RedirectToActionResult("Index", "LogIn", "");
+                }
+            }
+
+            
+
+
         }
     }
 }

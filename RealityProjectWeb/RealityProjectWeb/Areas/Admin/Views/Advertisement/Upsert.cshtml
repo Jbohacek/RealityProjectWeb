@@ -1,0 +1,90 @@
+﻿@model RealityProject.DataAccess.DataModels.Adds.Advertisement
+
+@{
+    ViewBag.Title = $"{@Model.GetName()}";
+    Layout = "_Layout_Admin";
+}
+@section Styles
+{
+    <style>
+        .active {
+            color: black !important;
+        }
+        .nav-item .nav-link {
+            color: gray;
+        }
+    </style>
+}
+@section Scripts
+{
+    <script>
+        $(document).ready(function(){
+            $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function(e){
+                var activeTab = $(e.target).text();
+                var previousTab = $(e.relatedTarget).text(); 
+                $(".active-tab span").html(activeTab);
+                $(".previous-tab span").html(previousTab);
+            });
+        });
+    </script>
+}
+
+<h2 class="display-3 my-5">@Model.GetName()</h2>
+
+<form>
+    <div class="m-4">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="nav-item">
+                <a href="#home" class="nav-link active" data-bs-toggle="tab">Basic information</a>
+            </li>
+            <li class="nav-item">
+                <a href="#profile" class="nav-link" data-bs-toggle="tab">Parameters</a>
+            </li>
+            <li class="nav-item">
+                <a href="#messages" class="nav-link" data-bs-toggle="tab">Photos</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="home">
+                
+                @if (ViewBag.Login.UserRole.Name == "Admin")
+                {
+                    <div class="form-floating mb-3">
+                        <input asp-for="Id" type="text" class="form-control" id="floatingInputId" readonly>
+                        <label for="floatingInputId">Id</label>
+                    </div>
+                }
+                else
+                {
+                    <input asp-for="Id" hidden/>
+                }
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input asp-for="InsideSize" type="number" class="form-control" id="floatingInputInsideSize">
+                            <label for="floatingInputInsideSize">Inside size</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input asp-for="OutsideSize" type="number" class="form-control" id="floatingInputOutsizeSize">
+                            <label for="floatingInputOutsizeSize">Outside size</label>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="tab-pane fade" id="profile">
+                <h4 class="mt-2">Profile tab content</h4>
+                <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+            </div>
+            <div class="tab-pane fade" id="messages">
+                <h4 class="mt-2">Messages tab content</h4>
+                <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+            </div>
+        </div>
+        
+    </div>
+</form>
+
+

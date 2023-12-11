@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using RealityProjectWeb.Models;
 
 namespace RealityProjectWeb.Areas.Admin.Controllers
 {
-    [Area("Admin"),Secured]
+    [Area("Admin")]
     public class UserController : BaseController
     {
 
@@ -20,12 +21,14 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
             
         }
 
+        [Secured]
         public IActionResult Index()
         {
 
             return View(Database.Users.GetAll("UserRole").ToList());
         }
 
+        [Secured("Seller")]
         public IActionResult Upsert(Guid? id)
         {
             IEnumerable<SelectListItem> data = Database.Roles.GetAll()
@@ -109,8 +112,21 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
 
             }
 
-            return RedirectToAction("index");
+            if (base.Credential.UserRole.Name == "Admin")
+            {
+                return RedirectToAction("index");
+            }
+            else
+            {
+                return RedirectToAction("Upsert");
+            }
 
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            ViewBag.UsersPage = "active";
+            base.OnActionExecuting(context);
         }
     }
 }

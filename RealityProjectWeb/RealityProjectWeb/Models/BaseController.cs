@@ -22,6 +22,7 @@ namespace RealityProjectWeb.Models
                 Credential = cred;
                 this.ViewBag.Login = cred;
                 this.ViewBag.UserName = cred.UserName;
+                this.ViewBag.ProfilePic = Database.Photos.GetFirstOrDefault(x => x.UserId == cred.UserId).GetPath();
             }
         }
 

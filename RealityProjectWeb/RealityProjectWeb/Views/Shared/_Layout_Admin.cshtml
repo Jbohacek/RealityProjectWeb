@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using RealityProject.DataAccess.Models
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,52 +7,86 @@
     <title>@ViewData["Title"] - RealityProjectWeb</title>
     @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/Admin/AdminLayout.css" />
     @await RenderSectionAsync("Styles",false)
 </head>
-<body>
-    <nav style="background-color:#38bd9c !important" class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Admin Controls</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-area="Admin" asp-controller="Control" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Recent activity</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Control
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a></li>
-                            <li><a class="dropdown-item" asp-controller="Control" asp-action="Inzeraty">Advertisements</a></li>
-                            <li><a class="dropdown-item"  href="#">Reviews</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <span class="navbar-text">
-                    Hello <span style="color:green; font-weight:600">@ViewBag.UserName</span> ! | <a asp-area="Admin" asp-controller="LogIn" asp-action="LogOut">Log out</a>
-                </span>
-            </div>
-        </div>
-    </nav>
-    
+<body class="d-flex" style="height: 100vh">
+
+    <div id="SideBar" class="d-flex flex-column flex-shrink-0 p-3 text-white" style="width: 280px; background-color: #2b5947">
+
+    <a asp-area="Admin" asp-controller="Control" asp-action="Index" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        @if (ViewBag.Login.UserRole.Name == "Admin")
+        {
+            <i class="mb-1 me-3 bi bi-cpu fs-3"></i>
+            <span class=" fs-2">Admin</span>
+        }
+        else
+        {
+            <i class=" mb-1 me-3 bi bi-houses fs-3"></i>
+            <span class=" fs-4">Real Investments</span>
+        }
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li>
+            <a asp-area="Admin" asp-controller="Control" asp-action="Index" class="nav-link text-white @ViewBag.HomePage">
+                <i class="bi bi-house"></i>
+                Home
+            </a>
+        </li>
+            @if (ViewBag.Login.UserRole.Name == "Admin")
+            {
+                <li>
+                    <a asp-area="Admin" asp-controller="User" asp-action="Index" class="nav-link text-white @ViewBag.UsersPage">
+                        <i class="bi bi-people"></i>
+                        Users
+                    </a>
+                </li>
+            }
+            <li>
+                <a asp-area="Admin" asp-controller="Advertisement" asp-action="Index" class="nav-link text-white @ViewBag.AdPage">
+                    <i class="bi bi-building-add"></i>
+                    Advertisements
+                </a>
+            </li>
+            @if (ViewBag.Login.UserRole.Name == "Admin")
+            {
+                <li>
+                    <a asp-area="Admin" asp-controller="Parameter" asp-action="Index" class="nav-link text-white @ViewBag.ParaPage">
+                        <i class="bi bi-collection"></i>
+                        Parameter Groups
+                    </a>
+                </li>
+            }
+    </ul>
+    <hr>
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="@ViewBag.ProfilePic" alt="" width="50" height="50" class="rounded-circle me-2">
+            <strong class="fs-4">@ViewBag.UserName</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+@*                         <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li> *@
+            <li><a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Upsert" asp-route-id="@ViewBag.Login.UserId">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" asp-area="Admin" asp-controller="LogIn" asp-action="LogOut">Sign out</a></li>
+        </ul>
+    </div>
+</div>
+
+
 <div class="container">
     @RenderBody()
 </div>
 
-    
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+                    

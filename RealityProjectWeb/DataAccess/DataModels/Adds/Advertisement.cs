@@ -44,7 +44,7 @@ namespace RealityProject.DataAccess.DataModels.Adds
 
         [Required]
         public double Price { get; set; }
-        public string GetPrice() => @$"{Price} + Kč";
+        public string GetPrice() => @$"{Price} Kč";
 
         [Required]
         public ElectricityCat Electricity { get; set; }
