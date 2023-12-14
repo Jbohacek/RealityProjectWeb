@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RealityProject.DataAccess.DataModels.Adds;
 using RealityProject.DataAccess.DataModels.Images;
+using RealityProject.DataAccess.DataModels.Location;
 using RealityProject.DataAccess.DataModels.Parameters;
 using RealityProject.DataAccess.DataModels.UserManagement;
 
@@ -23,6 +24,11 @@ namespace RealityProject.DataAccess.Data
 
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Role> Roles { get; set; } = null!;
+
+        public DbSet<Address> Addresses { get; set; } = null!;
+        public DbSet<City> Cities { get; set; } = null!;
+        public DbSet<District> Districts { get; set; } = null!;
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

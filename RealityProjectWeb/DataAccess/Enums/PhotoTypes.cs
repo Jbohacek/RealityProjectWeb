@@ -8,6 +8,7 @@ namespace RealityProject.DataAccess.Enums
 {
     public enum PhotoTypes
     {
-        Profile
+        Profile,
+        Gallery
     }
 }

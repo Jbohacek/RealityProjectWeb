@@ -6,17 +6,13 @@
 }
 @section Styles
 {
-    <style>
-        .active {
-            color: black !important;
-        }
-        .nav-item .nav-link {
-            color: gray;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/Admin/AdvertisementsEdit.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 }
 @section Scripts
 {
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
         $(document).ready(function(){
             $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function(e){
@@ -24,30 +20,107 @@
                 var previousTab = $(e.relatedTarget).text(); 
                 $(".active-tab span").html(activeTab);
                 $(".previous-tab span").html(previousTab);
+
+
+                
             });
+            $('#floatingSelectKraj').select2();
+            $('#floatingSelectDistrict').select2();
+            $('#floatingSelectCity').select2();
         });
+
+
+
     </script>
+    
 }
 
 <h2 class="display-3 my-5">@Model.GetName()</h2>
 
-<form>
+<form id="TabForm">
     <div class="m-4">
         <ul id="myTab" class="nav nav-tabs">
             <li class="nav-item">
-                <a href="#home" class="nav-link active" data-bs-toggle="tab">Basic information</a>
+                <a href="#summary" class="nav-link active" data-bs-toggle="tab">Overall Information</a>
             </li>
             <li class="nav-item">
-                <a href="#profile" class="nav-link" data-bs-toggle="tab">Parameters</a>
+                <a href="#information" class="nav-link " data-bs-toggle="tab">Basic information</a>
             </li>
             <li class="nav-item">
-                <a href="#messages" class="nav-link" data-bs-toggle="tab">Photos</a>
+                <a href="#Parameters" class="nav-link" data-bs-toggle="tab">Parameters</a>
+            </li>
+            <li class="nav-item">
+                <a href="#Photos" class="nav-link" data-bs-toggle="tab">Photos</a>
             </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="home">
-                
-                @if (ViewBag.Login.UserRole.Name == "Admin")
+            <div class="tab-pane fade show active" id="summary">
+                @* <h4 class="mt-2 display-5 fw-normal">@Model.GetName()</h4> *@
+                <h4 class="mt-4 display-6 text-muted text-center"></h4>
+                <div class="row mt-4">
+                    <div class="col-4">
+                        <div class="shadow rounded border p-3">
+                            <div class="fw-light" style="font-size: 28px"><i class="bi bi-eye"></i> Total views</div>
+                            <div class="display-6 text-center d-block">@Model.ViewsCount</div>
+                        </div>
+                        <div class="shadow rounded border p-3 mt-4">
+                            <div class="fw-light" style="font-size: 28px"><i class="bi bi-info-circle"></i> Quick Info</div>
+                            <div class="text-muted container mx-4" style="font-size: 20px">
+                                <div><span style="font-weight: 500">Price: </span> @Model.GetPrice()</div>
+                                <div><span style="font-weight: 500">Is luxury: </span> @Model.IsLuxury</div>
+                                <div><span style="font-weight: 500">Home type: </span> @Model.HomeType</div>
+                                <hr class="m-1"/>
+                                <div style="font-size: 24px; font-weight: 500" class="text-muted">@Model.Address.ToString()</div>
+                                <div><span style="font-weight: 500">Area: </span> @Model.InsideSize m²</div>
+                                <div><span style="font-weight: 500">Area outside: </span> @Model.OutsideSize m²</div>
+                                <div><span style="font-weight: 500">Electricity: </span> @Model.Electricity.ToString()</div>
+                                <div><span style="font-weight: 500">Address: </span> @Model.Address.Street</div>
+                                <div><span style="font-weight: 500">Floor: </span> @Model.Address.Floor</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="shadow rounded border p-3">
+                            <div class="fw-light" style="font-size: 28px"><i class="bi bi-patch-question"></i> Recent questions</div>
+                            <div class="d-flex flex-column mt-4 mx-4">
+                                @foreach (var item in @Model.Requests.Take(3))
+                                {
+                                    <div class="border mb-3 rounded">
+                                        @if (item.User != null)
+                                        {
+                                            <div class="fw-light" style="font-size: 34px"><i class="bi bi-question-lg"></i> @item.User.Username</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="fw-light" style="font-size: 34px"><i class="bi bi-question-lg"></i> @item.Email</div>
+                                        }
+                                        <div class="lead ms-4" style="font-size: 22px">@item.Content</div>
+                                        <hr/>
+                                        @if (item.User != null)
+                                        {
+                                            <div class="d-flex justify-content-between px-4 pb-3">
+                                                <a href="tel:@item.User.Phone">@item.User.Phone</a>
+                                                <a href="emailto:@item.User.Email">@item.User.Email</a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex justify-content-between">
+                                                <a href="tel:@item.Phone">@item.Phone</a>
+                                                <a href="emailto:@item.Email">@item.Email</a>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade " id="information">
+
+                @if (ViewBag.Login.UserRole.Name == "Admin" && false == true)
                 {
                     <div class="form-floating mb-3">
                         <input asp-for="Id" type="text" class="form-control" id="floatingInputId" readonly>
@@ -58,30 +131,139 @@
                 {
                     <input asp-for="Id" hidden/>
                 }
-                <div class="row">
-                    <div class="col">
+                
+                <div class="row mt-4 gap-3">
+                    <div class="col-4 shadow rounded border p-3">
+                        <div class="display-6 mb-3"><i class="bi bi-info-circle"></i> Info</div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="floatingSelect" asp-for="HomeType" aria-label="Floating label select example">
+                                <option value="0">Flat</option>
+                                <option value="1">House</option>
+                                <option value="2">Cottage</option>
+                            </select>
+                            <label for="floatingSelect">Home type</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="floatingSelect" asp-for="Electricity" aria-label="Floating label select example">
+                                <option value="0">A</option>
+                                <option value="1">B</option>
+                                <option value="2">C</option>
+                                <option value="3">D</option>
+                                <option value="4">G</option>
+                                <option value="5">E</option>
+                                <option value="6">F</option>
+                            </select>
+                            <label for="floatingSelect">Electricity</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" asp-for="IsLuxury" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Is luxury
+                            </label>
+                        </div>
                         <div class="form-floating mb-3">
                             <input asp-for="InsideSize" type="number" class="form-control" id="floatingInputInsideSize">
                             <label for="floatingInputInsideSize">Inside size</label>
                         </div>
-                    </div>
-                    <div class="col">
                         <div class="form-floating mb-3">
                             <input asp-for="OutsideSize" type="number" class="form-control" id="floatingInputOutsizeSize">
                             <label for="floatingInputOutsizeSize">Outside size</label>
                         </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Price" type="number" class="form-control" id="floatingInputOutsizeSize">
+                            <label for="floatingInputOutsizeSize">Price</label>
+                        </div>
+                    </div>
+                    <div class="col shadow rounded border p-3">
+                        <div class="display-6 mb-3"><i class="bi bi-pin-map"></i> Location</div>
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Address.Street" type="text" class="form-control" id="floatingInputInsideSize">
+                                    <label for="floatingInputInsideSize">Street</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Address.Floor" type="number" class="form-control" id="floatingInputInsideSize">
+                                    <label for="floatingInputInsideSize">Floor</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="floatingSelect">Kraj</label>
+                            <select id="floatingSelectKraj" style="width: 50%" asp-items="@ViewBag.Kraje" asp-for="Address.City.District.Kraj" aria-label="Floating label select example">
+                            </select>
+                        </div>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="floatingSelect">District</label>
+                            <select class="form-select" style="width: 50%" id="floatingSelectDistrict" asp-items="@ViewBag.Districts" asp-for="Address.City.District.Id" aria-label="Floating label select example">
+                            </select>
+                        </div>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="floatingSelect">City</label>
+                            <select id="floatingSelectCity" style="width: 50%" asp-items="@ViewBag.Cities" asp-for="Address.City.Id">
+                            </select>
+                        </div>
                     </div>
                 </div>
-                
+                <div class="mt-4 shadow rounded border p-3">
+                    <div class="form-floating">
+                        <textarea asp-for="Content" class="form-control" placeholder="Leave a content here" id="floatingTextarea2" style="height: 200px"></textarea>
+                        <label for="floatingTextarea2">Content</label>
+                    </div>
+                </div>
             </div>
-            <div class="tab-pane fade" id="profile">
-                <h4 class="mt-2">Profile tab content</h4>
-                <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+            <div class="tab-pane fade" id="Parameters">
+                <div class="rounded border shadow mt-4 p-4">
+                    <div class="display-6 mb-3"><i class="bi bi-wrench-adjustable-circle"></i> Parameters</div>
+                    <hr/>
+                    <table class="table table-striped mt-2">
+                        <thead>
+                        <tr>
+                            <th scope="col">Parameter</th>
+                            <th scope="col">Value</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Parameters)
+                        {
+                            <tr>
+                                <td>@item.Group.Name</td>
+                                <td>@item.Value</td>
+                                <td>
+                                    <a class="btn btn-primary">Edit</a>
+                                    <a class="btn btn-danger">Remove</a>
+                                </td>
+                            </tr>
+                        }
+                        
+                        </tbody>
+                    </table>
+                    
+
+                </div>
+
             </div>
-            <div class="tab-pane fade" id="messages">
-                <h4 class="mt-2">Messages tab content</h4>
-                <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+            <div class="tab-pane fade" id="Photos">
+                <div class="rounded border shadow mt-4 p-4">
+                    <div class="display-6 mb-3"><i class="bi bi-image-fill"></i> Photos</div>
+                    <hr />
+                    <div class="row gap-3">
+                        @await Component.InvokeAsync("ImageAddAdvertisement",Model)
+                        <div class="col d-flex flex-wrap">
+                            @foreach (var item in Model.Gallery)
+                            {
+                                @await Component.InvokeAsync("ImageDisplay",item)
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
+
         </div>
         
     </div>

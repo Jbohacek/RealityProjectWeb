@@ -1,0 +1,7 @@
+﻿#TabForm .active {
+    color: black !important;
+}
+
+.nav-item .nav-link {
+    color: gray;
+}

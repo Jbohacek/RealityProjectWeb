@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using RealityProject.DataAccess.DataModels.Adds;
+using RealityProject.DataAccess.Enums;
 using RealityProject.DataAccess.Repository;
 using RealityProjectWeb.Models;
 
@@ -33,6 +34,9 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
                 item = Database.Advertisements.GetAllInformation((Guid)id);
             }
 
+            ViewBag.Kraje = Kraje.GetKraje();
+            ViewBag.Districts = Database.Location.GetDistricts();
+            ViewBag.Cities = Database.Location.GetCities();
 
             return View(item);
         }

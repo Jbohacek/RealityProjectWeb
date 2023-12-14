@@ -24,8 +24,11 @@ namespace RealityProject.DataAccess.Repository.Repos
             var item = _context.Advertisements
                 .Include(x => x.Gallery)
                 .Include(x => x.Seller)
-                .Include(x => x.Requests)
-                .Include(x =>x.Parameters)
+                .Include(x => x.Requests).ThenInclude(x => x.User)
+                .Include(x =>x.Parameters).ThenInclude(x => x.Group)
+                .Include(x => x.Address)
+                .ThenInclude(x => x.City)
+                .ThenInclude(x => x.District)
                 .FirstOrDefault(x => x.Id == id);
 
             if(item == null) return new Advertisement();

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealityProject.DataAccess.DataModels.Images;
+using RealityProject.DataAccess.DataModels.Location;
 using RealityProject.DataAccess.DataModels.Parameters;
 using RealityProject.DataAccess.DataModels.UserManagement;
 using RealityProject.DataAccess.Enums;
@@ -27,6 +28,8 @@ namespace RealityProject.DataAccess.DataModels.Adds
         public double InsideSize { get; set; }
 
         public double? OutsideSize { get; set; }
+
+        public int ViewsCount { get; set; }
 
         public string GetName()
         {
@@ -61,5 +64,7 @@ namespace RealityProject.DataAccess.DataModels.Adds
         public virtual User Seller { get; set; } = null!;
 
         public virtual ICollection<Request> Requests { get; set; } = null!;
+
+        public virtual Address Address { get; set; } = null!;
     }
 }
