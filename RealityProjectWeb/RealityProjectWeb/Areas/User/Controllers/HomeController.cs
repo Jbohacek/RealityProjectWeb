@@ -20,6 +20,10 @@ namespace RealityProjectWeb.Areas.User.Controllers
 
         public IActionResult Index()
         {
+
+            //base.Database.Users.ResetUserPassword();
+            //Database.Save();
+
             //Role role = new Role() { Id = Guid.NewGuid(), IsValid = true, Name = "Admin" };
             //base.Database.Roles.Add(role);
             //Database.Save();
