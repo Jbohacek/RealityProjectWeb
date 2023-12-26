@@ -45,6 +45,56 @@
             $('#floatingSelectKraj').select2();
             $('#floatingSelectDistrict').select2();
             $('#floatingSelectCity').select2();
+            $('#AddParaSelect').select2({
+                dropdownParent: $('#AddPara')
+            });
+
+            //let textValue = "";
+            //const source = document.getElementById('source');
+
+            //const inputHandler = function (e) {
+            //    console.log(e.target.value);
+            //    textValue = e.target.value;
+            //}
+
+            //source.addEventListener('input', inputHandler);
+            //source.addEventListener('propertychange', inputHandler); 
+
+
+
+            //$('#AddParaSelect').on('select2:select', function (e) {
+            //    var data = e.params.data.id;
+
+            //    var neco = url + data + "&value=" + textValue;
+
+            //    console.log(neco);
+
+
+            //    document.getElementById("addParaA").setAttribute("href", neco);
+            
+            //});
+
+            const url = "/Admin/Advertisement/AddParameter?idAd=@(Html.Raw(Model.Id))&idPara="
+            document.getElementById("ConfirmAdd").addEventListener('click',AddAttribute)
+
+            function AddAttribute() {
+                var group = $("#AddParaSelect").val();
+                var value = document.getElementById("valuePara").value;
+
+                console.log(group);
+                console.log(value);
+
+                var endLink = url + group + "&value=" + value
+
+                
+
+                window.location.href = endLink;
+
+            }
+
+
+
+
         });
 
 
@@ -236,7 +286,32 @@
             </div>
             <div class="tab-pane fade" id="Parameters">
                 <div class="rounded border shadow mt-4 p-4">
-                    <div class="display-6 mb-3"><i class="bi bi-wrench-adjustable-circle"></i> Parameters</div>
+                    <div class="d-flex justify-content-between">
+                        <div class="display-6 mb-3"><i class="bi bi-wrench-adjustable-circle"></i> Parameters</div>
+                        
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddPara">
+                            Add parameter
+                        </button>
+
+                        <div class="modal fade" id="AddPara" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <select id="AddParaSelect" asp-items="@ViewBag.Parameters"></select>
+                                        <input class="form-control" type="text" id="valuePara"/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <div id="ConfirmAdd" class="btn btn-primary">Add Parameter</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <hr/>
                     <table class="table table-striped mt-2">
                         <thead>
@@ -253,8 +328,16 @@
                                 <td>@item.Group.Name</td>
                                 <td>@item.Value</td>
                                 <td>
+                                    <form asp-action="EditParameter" asp-route-idPara="@item.Id" asp-route-idAd="@Model.Id">
+                                        <div>
+                                            <input name="value" type="text"/>
+                                            <button class="btn btn-primary" type="submit"></button>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td>
                                     <a class="btn btn-primary">Edit</a>
-                                    <a class="btn btn-danger">Remove</a>
+                                    <a asp-action="RemoveParameter" asp-route-idAd="@Model.Id" asp-route-idPara="@item.Id" class="btn btn-danger">Remove</a>
                                 </td>
                             </tr>
                         }

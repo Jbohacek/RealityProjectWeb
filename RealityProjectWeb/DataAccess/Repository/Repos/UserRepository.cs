@@ -30,7 +30,7 @@ namespace RealityProject.DataAccess.Repository.Repos
                 return new Credentials(Results.WrongUserName);
             }
 
-            var selectedUser = users.FirstOrDefault(x => x.Password.Decrypt() == password);
+            var selectedUser = users.FirstOrDefault(x => x.Password.Validate(password));
 
             if (selectedUser == null)
             {
@@ -69,9 +69,23 @@ namespace RealityProject.DataAccess.Repository.Repos
             var dat = base.GetAll("UserRole,Advertisements,Requests,ProfilePicture").FirstOrDefault(x => x.Id == id);
 
             if (dat != null)
-                dat.Password = dat.Password.Decrypt();
+                dat.Password = string.Empty;
 
             return dat;
+        }
+
+        public void ResetUserPassword()
+        {
+            var everyUser = base.GetAll().ToList();
+
+            foreach (var user in everyUser)
+            {
+                user.Password = "123465".Crypt();
+            }
+
+            
+
+
         }
     }
 }
