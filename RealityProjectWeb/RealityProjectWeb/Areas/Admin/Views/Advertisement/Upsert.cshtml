@@ -1,4 +1,5 @@
-﻿@model RealityProject.DataAccess.DataModels.Adds.Advertisement
+﻿@using RealityProjectWeb.Areas.Admin.Models
+@model RealityProject.DataAccess.DataModels.Adds.Advertisement
 
 @{
     ViewBag.Title = $"{@Model.GetName()}";
@@ -15,6 +16,23 @@
 
     <script>
         $(document).ready(function(){
+
+            switch (@ViewBag.Page) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 4:
+                    break;
+            default:
+            }
+
+
+
+
+
             $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function(e){
                 var activeTab = $(e.target).text();
                 var previousTab = $(e.relatedTarget).text(); 
@@ -37,7 +55,9 @@
 
 <h2 class="display-3 my-5">@Model.GetName()</h2>
 
-<form id="TabForm">
+
+<form id="TabForm" asp-action="Update" method="post">
+    
     <div class="m-4">
         <ul id="myTab" class="nav nav-tabs">
             <li class="nav-item">
@@ -112,7 +132,7 @@
                                         }
                                     </div>
                                 }
-                                
+
                             </div>
                         </div>
                     </div>
@@ -131,7 +151,7 @@
                 {
                     <input asp-for="Id" hidden/>
                 }
-                
+
                 <div class="row mt-4 gap-3">
                     <div class="col-4 shadow rounded border p-3">
                         <div class="display-6 mb-3"><i class="bi bi-info-circle"></i> Info</div>
@@ -238,10 +258,10 @@
                                 </td>
                             </tr>
                         }
-                        
+
                         </tbody>
                     </table>
-                    
+
 
                 </div>
 
@@ -249,13 +269,13 @@
             <div class="tab-pane fade" id="Photos">
                 <div class="rounded border shadow mt-4 p-4">
                     <div class="display-6 mb-3"><i class="bi bi-image-fill"></i> Photos</div>
-                    <hr />
+                    <hr/>
                     <div class="row gap-3">
-                        @await Component.InvokeAsync("ImageAddAdvertisement",Model)
+                        @await Component.InvokeAsync("ImageAddAdvertisement", Model)
                         <div class="col d-flex flex-wrap">
                             @foreach (var item in Model.Gallery)
                             {
-                                @await Component.InvokeAsync("ImageDisplay",item)
+                                @await Component.InvokeAsync("ImageDisplay", new PhotoAdvertisement() { Advertisement = @Model.Id, Photo = item })
                             }
                         </div>
                     </div>
@@ -265,8 +285,11 @@
             </div>
 
         </div>
-        
+        <input type="submit" value="Login">
+
     </div>
+
+
 </form>
 
 

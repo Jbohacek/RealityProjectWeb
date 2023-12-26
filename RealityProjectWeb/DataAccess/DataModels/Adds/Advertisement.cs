@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using RealityProject.DataAccess.DataModels.Images;
 using RealityProject.DataAccess.DataModels.Location;
 using RealityProject.DataAccess.DataModels.Parameters;
@@ -54,16 +55,16 @@ namespace RealityProject.DataAccess.DataModels.Adds
 
         public string? Content { get; set; }
 
-        public virtual ICollection<Parameter> Parameters { get; set; } = null!;
+        [ValidateNever]public virtual ICollection<Parameter> Parameters { get; set; } = null!;
 
-        public virtual ICollection<Photo> Gallery { get; set; } = null!;
+        [ValidateNever] public virtual ICollection<Photo> Gallery { get; set; } = null!;
 
         [ForeignKey("Photo")] public Guid? IdPhoto { get; set; }
         public virtual Photo? Photo { get; set; }
 
-        public virtual User Seller { get; set; } = null!;
+        [ValidateNever] public virtual User Seller { get; set; } = null!;
 
-        public virtual ICollection<Request> Requests { get; set; } = null!;
+        [ValidateNever] public virtual ICollection<Request> Requests { get; set; } = null!;
 
         public virtual Address Address { get; set; } = null!;
     }

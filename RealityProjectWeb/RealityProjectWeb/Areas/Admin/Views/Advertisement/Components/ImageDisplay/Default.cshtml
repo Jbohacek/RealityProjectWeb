@@ -1,8 +1,25 @@
-﻿@model RealityProject.DataAccess.DataModels.Images.Photo
+﻿@model RealityProjectWeb.Areas.Admin.Models.PhotoAdvertisement
 
 <div class="card" style="width: 18rem;">
-    <img src="@Model.GetPath()" class="card-img-top" alt="...">
+    <img src="@Model.Photo.GetPath()" class="card-img-top" alt="...">
     <div class="card-body d-flex justify-content-end">
-        <a class="btn btn-danger">Delete</a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#@("Modal" + Model.Photo.Id.ToString().Substring(0,8))">
+            Delete
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" id="@("Modal" + Model.Photo.Id.ToString().Substring(0,8))" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a class="btn btn-danger" asp-action="RemoveImage" asp-route-photoId="@Model.Photo.Id" asp-route-advertisementId="@Model.Advertisement">Delete</a>
+            </div>
+        </div>
     </div>
 </div>

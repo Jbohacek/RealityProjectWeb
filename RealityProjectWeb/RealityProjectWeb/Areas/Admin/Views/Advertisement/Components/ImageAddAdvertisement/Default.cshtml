@@ -1,12 +1,19 @@
-﻿@model RealityProject.DataAccess.DataModels.Images.Photo
+﻿@model RealityProject.DataAccess.DataModels.Adds.Advertisement
 
-<div class="col-4">
-    <form>
+<div class="col-4 d-none">
+    <form >
         <div style="font-weight: 500; font-size: 26px">Upload Image</div>
         <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupFile01">Upload</label>
-            <input type="file" class="form-control" id="inputGroupFile01">
+            <input name="file" class="form-control" type="file" id="file">
         </div>
-        <button class="btn btn-primary w-25" type="submit">Submit</button>
+        <button type="submit">Send</button>
     </form>
 </div>
+
+<form method="post" EncType="multipart/form-data" asp-area="Admin" asp-controller="Advertisement" asp-action="AddImage">
+    <div style="font-weight: 500; font-size: 26px">Upload Image</div>
+    <input asp-for="Id"/>
+    <input name="file" class="form-control" type="file" id="file">
+    <button class="btn btn-primary" type="submit">Send</button>
+</form>

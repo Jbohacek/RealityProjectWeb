@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using RealityProject.DataAccess.Enums;
 
 namespace RealityProject.DataAccess.DataModels.Location
@@ -15,7 +16,7 @@ namespace RealityProject.DataAccess.DataModels.Location
         [Key]
         public Guid Id { get; set; }
 
-        public string Name { get; set; } = null!;
+        [ValidateNever] public string Name { get; set; } = null!;
 
         [MinLength(6), MaxLength(6)]
         public string? PostCode { get; set; }
