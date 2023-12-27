@@ -18,9 +18,12 @@ namespace RealityProject.DataAccess.Repository.Repos
         }
 
 
-        public ICollection<SelectListItem> GetParameterGroups()
+        public ICollection<SelectListItem> GetParameterGroups(List<Parameter> alreadyAssigned)
         {
+            var bList = alreadyAssigned.Select(x => x.Group.Id).Distinct().ToList();
+
             var ret = base.GetAll().ToList();
+            ret.RemoveAll(x => bList.Contains(x.Id));
             var final = ret.Select(x => new SelectListItem(x.Name, x.Id.ToString())).ToList();
             return final;
         }

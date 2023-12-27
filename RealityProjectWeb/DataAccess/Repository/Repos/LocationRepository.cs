@@ -49,5 +49,15 @@ namespace RealityProject.DataAccess.Repository.Repos
             return final;
         }
 
+        public District GetDistrict(Guid id)
+        {
+            return _districts.SingleOrDefault(x => x.Id == id);
+        }
+
+        public City GetCity(Guid id)
+        {
+            return _cities.SingleOrDefault(x => x.Id == id);
+        }
+
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using RealityProject.DataAccess.Data;
 using RealityProject.DataAccess.DataModels.Adds;
 using RealityProject.DataAccess.DataModels.Images;
+using RealityProject.DataAccess.DataModels.Location;
 using RealityProject.DataAccess.DataModels.Parameters;
 using RealityProject.DataAccess.Enums;
 using RealityProject.DataAccess.Repository;
@@ -37,6 +39,19 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
             {
                 item = Database.Advertisements.GetAllInformation((Guid)id);
             }
+            else
+            {
+                item.Parameters = new List<Parameter>();
+                item.Address = new Address()
+                {
+                    Floor = 0,
+                    Street = "None"
+                };
+
+                item.Address.City = Database.Location.GetCity(Guid.Parse("F63C38B1-0F93-4822-9945-4CE8B07ECAC4"));
+                item.Requests = new List<Request>();
+                item.Gallery = new List<Photo>();
+            }
 
             if (page != null)
             {
@@ -51,7 +66,14 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
             ViewBag.Kraje = Kraje.GetKraje();
             ViewBag.Districts = Database.Location.GetDistricts();
             ViewBag.Cities = Database.Location.GetCities();
-            ViewBag.Parameters = Database.Groups.GetParameterGroups();
+
+            var parameters = Database.Groups.GetParameterGroups(item.Parameters.ToList());
+            ViewBag.Parameters = parameters;
+            ViewBag.ShowParameters = true;
+            if (parameters.Count == 0)
+            {
+                ViewBag.ShowParameters = false;
+            }
 
 
             return View(item);
@@ -62,10 +84,29 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Upsert", new { id = item.Id });
-            }
+                
 
-            return RedirectToAction("Upsert", new { id = item.Id });
+                return RedirectToAction("Upsert", new { id = item.Id,page = 1 });
+            }
+            var datItem = Database.Advertisements.GetAllInformation(item.Id);
+
+            datItem.HomeType = item.HomeType;
+            datItem.Electricity = item.Electricity;
+            datItem.IsLuxury = item.IsLuxury;
+            datItem.InsideSize = item.InsideSize;
+            datItem.OutsideSize = item.OutsideSize;
+            datItem.Price = item.Price;
+            datItem.Content = item.Content;
+
+            datItem.Address.Street = item.Address.Street;
+            datItem.Address.Floor = item.Address.Floor;
+
+            
+            datItem.Address.City = Database.Location.GetCity(item.Address.City.Id);
+
+            Database.Advertisements.Update(datItem);
+            Database.Save();
+            return RedirectToAction("Upsert", new { id = item.Id, page = 1 });
         }
 
         [HttpPost]
@@ -86,7 +127,9 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
 
             Database.Save();
 
-            return RedirectToAction("Upsert", new {id = item.Id});
+            
+
+            return RedirectToAction("Upsert", new {id = item.Id,page = 3});
         }
 
         public IActionResult RemoveImage(Guid photoId, Guid advertisementId)
@@ -99,7 +142,8 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
 
             var manger = new FileManager(base.WebHostEnvironment.WebRootPath);
             manger.RemovePhoto(foto);
-            return RedirectToAction("Upsert", new { id = advertisementId });
+            ViewBag.Page = 3;
+            return RedirectToAction("Upsert", new { id = advertisementId, page = 3 });
         }
 
 
@@ -129,7 +173,9 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
 
             Database.Save();
 
-            return RedirectToAction("Upsert", new { id = idAd });
+           
+
+            return RedirectToAction("Upsert", new { id = idAd, page = 2 });
         }
 
         public IActionResult RemoveParameter(Guid idPara, Guid idAd)
@@ -140,7 +186,8 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
 
             Database.Save();
 
-            return RedirectToAction("Upsert", new { id = idAd });
+            ViewBag.Page = 2;
+            return RedirectToAction("Upsert", new { id = idAd, page =2 });
         }
 
         public IActionResult EditParameter(Guid idPara, Guid idAd, string value)

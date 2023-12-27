@@ -15,20 +15,31 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
 
-            switch (@ViewBag.Page) {
-                case 0:
-                    break;
+            var setActive = document.getElementById('summary');
+            var setActiveLink = document.getElementById('summaryLink');
+
+            console.log('Page: ' + @Html.Raw(ViewBag.Page));
+
+            switch (@Html.Raw(ViewBag.Page)) {
                 case 1:
+                    setActive = document.getElementById('information');
+                    setActiveLink = document.getElementById('informationLink');
                     break;
                 case 2:
+                    setActive = document.getElementById('Parameters');
+                    setActiveLink = document.getElementById('ParametersLink');
                     break;
-                case 4:
+                case 3:
+                    setActive = document.getElementById('Photos');
+                    setActiveLink = document.getElementById('PhotosLink');
                     break;
-            default:
             }
 
+            setActive.classList.add('show');
+            setActive.classList.add('active');
+            setActiveLink.classList.add('active');
 
 
 
@@ -43,36 +54,16 @@
                 
             });
             $('#floatingSelectKraj').select2();
+            $("#floatingSelectKraj").prop("disabled", true);
+
             $('#floatingSelectDistrict').select2();
+            $("#floatingSelectDistrict").prop("disabled", true);
+
             $('#floatingSelectCity').select2();
             $('#AddParaSelect').select2({
                 dropdownParent: $('#AddPara')
             });
 
-            //let textValue = "";
-            //const source = document.getElementById('source');
-
-            //const inputHandler = function (e) {
-            //    console.log(e.target.value);
-            //    textValue = e.target.value;
-            //}
-
-            //source.addEventListener('input', inputHandler);
-            //source.addEventListener('propertychange', inputHandler); 
-
-
-
-            //$('#AddParaSelect').on('select2:select', function (e) {
-            //    var data = e.params.data.id;
-
-            //    var neco = url + data + "&value=" + textValue;
-
-            //    console.log(neco);
-
-
-            //    document.getElementById("addParaA").setAttribute("href", neco);
-            
-            //});
 
             const url = "/Admin/Advertisement/AddParameter?idAd=@(Html.Raw(Model.Id))&idPara=";
             document.getElementById("ConfirmAdd").addEventListener('click', AddAttribute);
@@ -84,7 +75,7 @@
                 console.log(group);
                 console.log(value);
 
-                var endLink = url + group + "&value=" + value
+                var endLink = url + group + "&value=" + value;
 
                 
 
@@ -159,20 +150,22 @@
     <div class="m-4">
         <ul id="myTab" class="nav nav-tabs">
             <li class="nav-item">
-                <a href="#summary" class="nav-link active" data-bs-toggle="tab">Overall Information</a>
+                <a href="#summary" id="summaryLink" class="nav-link" data-bs-toggle="tab">Overall Information</a>
             </li>
             <li class="nav-item">
-                <a href="#information" class="nav-link " data-bs-toggle="tab">Basic information</a>
+                <a href="#information" id="informationLink" class="nav-link " data-bs-toggle="tab">Basic information</a>
             </li>
             <li class="nav-item">
-                <a href="#Parameters" class="nav-link" data-bs-toggle="tab">Parameters</a>
+                <a href="#Parameters" id="ParametersLink" class="nav-link" data-bs-toggle="tab">Parameters</a>
             </li>
             <li class="nav-item">
-                <a href="#Photos" class="nav-link" data-bs-toggle="tab">Photos</a>
+                <a href="#Photos" id="PhotosLink" class="nav-link" data-bs-toggle="tab">Photos</a>
             </li>
+            
+            <button class="btn btn-primary ms-auto mb-1 me-2" style="font-size: 21px" type="submit">Confirm changes</button>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="summary">
+            <div class="tab-pane fade" id="summary">
                 @* <h4 class="mt-2 display-5 fw-normal">@Model.GetName()</h4> *@
                 <h4 class="mt-4 display-6 text-muted text-center"></h4>
                 <div class="row mt-4">
@@ -280,15 +273,15 @@
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input asp-for="InsideSize" type="number" class="form-control" id="floatingInputInsideSize">
+                            <input required asp-for="InsideSize" type="number" class="form-control" id="floatingInputInsideSize">
                             <label for="floatingInputInsideSize">Inside size</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input asp-for="OutsideSize" type="number" class="form-control" id="floatingInputOutsizeSize">
+                            <input required asp-for="OutsideSize" type="number" class="form-control" id="floatingInputOutsizeSize">
                             <label for="floatingInputOutsizeSize">Outside size</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input asp-for="Price" type="number" class="form-control" id="floatingInputOutsizeSize">
+                            <input required asp-for="Price" type="number" class="form-control" id="floatingInputOutsizeSize">
                             <label for="floatingInputOutsizeSize">Price</label>
                         </div>
                     </div>
@@ -303,7 +296,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-floating mb-3">
-                                    <input asp-for="Address.Floor" type="number" class="form-control" id="floatingInputInsideSize">
+                                    <input required asp-for="Address.Floor" type="number" class="form-control" id="floatingInputInsideSize">
                                     <label for="floatingInputInsideSize">Floor</label>
                                 </div>
                             </div>
@@ -336,10 +329,19 @@
                 <div class="rounded border shadow mt-4 p-4">
                     <div class="d-flex justify-content-between">
                         <div class="display-6 mb-3"><i class="bi bi-wrench-adjustable-circle"></i> Parameters</div>
+                        @if (ViewBag.ShowParameters)
+                        {
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddPara">
+                                Add parameter
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" disabled class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddPara">
+                                Add parameter
+                            </button>
+                        }
                         
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddPara">
-                            Add parameter
-                        </button>
 
                         <div class="modal fade" id="AddPara" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -353,7 +355,6 @@
                                         <input class="form-control" type="text" id="valuePara"/>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <div id="ConfirmAdd" class="btn btn-primary">Add Parameter</div>
                                     </div>
                                 </div>
@@ -418,7 +419,7 @@
             </div>
 
         </div>
-        <input type="submit" value="Login">
+        
 
     </div>
 

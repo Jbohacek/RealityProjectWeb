@@ -21,6 +21,6 @@ namespace RealityProject.DataAccess.DataModels.Location
         [MinLength(6), MaxLength(6)]
         public string? PostCode { get; set; }
 
-        public District District { get; set; } = null!;
+        [ValidateNever]public District District { get; set; } = null!;
     }
 }

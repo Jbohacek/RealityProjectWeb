@@ -12,8 +12,8 @@
 </div>
 
 <form method="post" EncType="multipart/form-data" asp-area="Admin" asp-controller="Advertisement" asp-action="AddImage">
-    <div style="font-weight: 500; font-size: 26px">Upload Image</div>
-    <input asp-for="Id"/>
-    <input name="file" class="form-control" type="file" id="file">
+    <div class="mb-2" style="font-weight: 500; font-size: 26px">Upload Image</div>
+    <input hidden asp-for="Id"/>
+    <input name="file" class="form-control mb-2" type="file" id="file">
     <button class="btn btn-primary" type="submit">Send</button>
 </form>
