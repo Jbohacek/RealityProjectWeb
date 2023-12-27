@@ -153,7 +153,7 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
 
             Database.Save();
 
-            return RedirectToAction("Upsert", new { id = idAd });
+            return Ok();
         }
     }
 }

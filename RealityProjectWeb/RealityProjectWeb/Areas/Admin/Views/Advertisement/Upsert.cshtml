@@ -74,8 +74,8 @@
             
             //});
 
-            const url = "/Admin/Advertisement/AddParameter?idAd=@(Html.Raw(Model.Id))&idPara="
-            document.getElementById("ConfirmAdd").addEventListener('click',AddAttribute)
+            const url = "/Admin/Advertisement/AddParameter?idAd=@(Html.Raw(Model.Id))&idPara=";
+            document.getElementById("ConfirmAdd").addEventListener('click', AddAttribute);
 
             function AddAttribute() {
                 var group = $("#AddParaSelect").val();
@@ -92,11 +92,59 @@
 
             }
 
+            document.querySelectorAll('.btnEditPara').forEach(x => x.onclick = function(e) {
+                var ele = this.parentElement.querySelectorAll("input");
 
+                var idPara = ele[0].value;
+                var idAd = ele[1].value;
+                var value = ele[2].value;
+
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Admin/Advertisement/EditParameter?idPara=' + idPara + '&idAd=' + idAd + "&value=" + value,
+                    success: function() {
+                        var valueId = e.target.parentElement.parentElement.id;
+                        if (valueId === "") {
+                            valueId = e.target.parentElement.id;
+                        }
+                        ele[2].value = "";
+
+                        document.getElementById('value' + valueId).innerText = value;
+                        switchEdit(valueId);
+                    }
+
+                });
+
+                console.log(this.parentElement);
+            });
+
+
+            document.querySelectorAll('.OpenEdit').forEach(x => x.onclick = function(e) {
+                var search = e.target.parentElement.id.substring(4);
+                
+                if (search === "") {
+                    search = e.target.id.substring(4);
+                }
+
+                switchEdit(search);
+            });
+
+            function switchEdit(idEle) {
+                var visibleElement = document.getElementById(idEle);
+                
+
+
+                if (visibleElement.style.display === "flex") {
+                    visibleElement.style.display = "none";
+                } else {
+                    visibleElement.style.display = "flex";
+                }
+            }
 
 
         });
-
+        
 
 
     </script>
@@ -326,17 +374,19 @@
                         {
                             <tr>
                                 <td>@item.Group.Name</td>
-                                <td>@item.Value</td>
+                                <td id="value@(item.Id)">@item.Value</td>
                                 <td>
-                                    <form asp-action="EditParameter" asp-route-idPara="@item.Id" asp-route-idAd="@Model.Id">
-                                        <div>
-                                            <input name="value" type="text"/>
-                                            <button class="btn btn-primary" type="submit"></button>
-                                        </div>
-                                    </form>
+                                    
+                                    <div id="@item.Id" style="display: none" >
+                                        <input name="idPara"  value="@item.Id" readonly hidden/>
+                                        <input name="idAd" value="@Model.Id" readonly hidden/>
+                                        <input name="value" class="form-control w-50 me-3" type="text" />
+                                        <a class="btn btn-success btnEditPara"><i class="bi bi-check"></i></a>
+                                    </div>
+                                    
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary">Edit</a>
+                                        <a class="btn btn-primary OpenEdit" id="Open@(item.Id)"><i class="bi bi-pencil"></i> </a>
                                     <a asp-action="RemoveParameter" asp-route-idAd="@Model.Id" asp-route-idPara="@item.Id" class="btn btn-danger">Remove</a>
                                 </td>
                             </tr>
