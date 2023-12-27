@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.25" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.25">
       <PrivateAssets>all</PrivateAssets>
@@ -46,6 +50,7 @@
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\User\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\Control\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\User\Upsert.cshtml" />
+    <_ContentIncludedByDefault Remove="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -70,6 +75,10 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Areas\Admin\Views\Advertisement\Components\ImageDisplay\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
 </Project>
