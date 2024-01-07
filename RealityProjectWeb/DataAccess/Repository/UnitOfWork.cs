@@ -20,6 +20,7 @@ namespace RealityProject.DataAccess.Repository
         public RoleRepository Roles;
         public GroupRepository Groups;
         public LocationRepository Location;
+        public RequestRepository Requests;
 
         public UnitOfWork(ApplicationDbContext database)
         {
@@ -32,6 +33,7 @@ namespace RealityProject.DataAccess.Repository
             Roles = new RoleRepository(database);
             Groups = new GroupRepository(database);
             Location = new LocationRepository(database);
+            Requests = new RequestRepository(database);
         }
 
         public void Save()

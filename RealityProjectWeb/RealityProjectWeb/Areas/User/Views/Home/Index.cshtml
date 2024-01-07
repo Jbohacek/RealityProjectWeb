@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomePage
+
+@{
     ViewData["Title"] = "Hlavni stránka";
 }
 
@@ -24,131 +26,77 @@
         </form>
     </div>
     <div class="selection">
-        <a href="">
+        <a href="#Flats" onclick="ChangeSelection(0)">
             <div>Byty</div>
-            <div>32 nabídek</div>
+            <div>@Model.CountFlats nabídek</div>
         </a>
-        <a href="">
+        <a href="#Luxury" onclick="ChangeSelection(1)">
             <div>Luxusni</div>
-            <div>2 nabídek</div>
+            <div>@Model.CountLuxury nabídek</div>
         </a>
-        <a href="">
+        <a href="#Houses" onclick="ChangeSelection(2)">
             <div>Domy</div>
-            <div>16 nabídek</div>
+            <div>@Model.CountHouses nabídek</div>
         </a>
-        <a href="">
+        <a href="#Cottages" onclick="ChangeSelection(3)">
             <div>Chaty</div>
-            <div>7 nabídek</div>
+            <div>@Model.CountCottages nabídek</div>
         </a>
     </div>
     <h3>Naše nabídka</h3>
     <hr>
-    <div class="articles">
-        <article>
-            <a href="Details/Detail1.html">
-                <img src="~/References/podklady/home-img-07-370x250.jpg" alt="">
-            </a>
-            <a href="Details/Detail1.html">AVA Nob Hill</a>
-            <h5>11 500,-/ měsíc</h5>
-            <p>
-                AVA Nob Hill includes studios and 1 and 2 bedroom
-                apartments that feature an urban-inspired design
-                that extends beyond your walls and throughout
-                the entire community. AVA Nob Hill includes
-                studios and 1 and 2 bedroom apartments that
-                feature an urban-inspired design that extends
-                beyond your walls and throughout the entire community.
-            </p>
-        </article>
-        <article>
-            <a href="Details/Detail1.html">
-                <img src="~/References/podklady/home-img-05-370x250.jpg" alt="">
-            </a>
-            <a href="Details/Detail1.html">SF Flat</a>
-            <h5>11 500,-/ měsíc</h5>
-            <p>
-                SF Flat includes studios and 1 and 2 bedroom
-                apartments that feature an urban-inspired design
-                that extends beyond your walls and throughout
-                the entire community. SF Flat includes
-                studios and 1 and 2 bedroom apartments that
-                feature an urban-inspired design that extends
-                beyond your walls and throughout the entire community.
-            </p>
-        </article>
-        <article>
-            <a href="Details/Detail1.html">
-                <img src="~/References/podklady/home-img-06-370x250.jpg" alt="">
-            </a>
-            <a href="Details/Detail1.html">WTO rooms</a>
-            <h5>11 500,-/ měsíc</h5>
-            <p>
-                WTO rooms includes studios and 1 and 2 bedroom
-                apartments that feature an urban-inspired design
-                that extends beyond your walls and throughout
-                the entire community. WTO rooms includes
-                studios and 1 and 2 bedroom apartments that
-                feature an urban-inspired design that extends
-                beyond your walls and throughout the entire community.
-            </p>
-        </article>
-
-        <article>
-            <a href="Details/Detail1.html">
-                <img src="~/References/podklady/home-img-07-370x250.jpg" alt="">
-            </a>
-            <a href="Details/Detail1.html">AVA Nob Hill</a>
-            <h5>11 500,-/ měsíc</h5>
-            <p>
-                AVA Nob Hill includes studios and 1 and 2 bedroom
-                apartments that feature an urban-inspired design
-                that extends beyond your walls and throughout
-                the entire community. AVA Nob Hill includes
-                studios and 1 and 2 bedroom apartments that
-                feature an urban-inspired design that extends
-                beyond your walls and throughout the entire community.
-            </p>
-        </article>
-        <article>
-            <a href="Details/Detail1.html">
-                <img src="~/References/podklady/home-img-05-370x250.jpg" alt="">
-            </a>
-            <a href="Details/Detail1.html">SF Flat</a>
-            <h5>11 500,-/ měsíc</h5>
-            <p>
-                SF Flat includes studios and 1 and 2 bedroom
-                apartments that feature an urban-inspired design
-                that extends beyond your walls and throughout
-                the entire community. SF Flat includes
-                studios and 1 and 2 bedroom apartments that
-                feature an urban-inspired design that extends
-                beyond your walls and throughout the entire community.
-            </p>
-        </article>
-        <article>
-            <a href="Details/Detail1.html">
-                <img src="~/References/podklady/home-img-06-370x250.jpg" alt="">
-            </a>
-            <a href="Details/Detail1.html">WTO rooms</a>
-            <h5>11 500,-/ měsíc</h5>
-            <p>
-                WTO rooms includes studios and 1 and 2 bedroom
-                apartments that feature an urban-inspired design
-                that extends beyond your walls and throughout
-                the entire community. WTO rooms includes
-                studios and 1 and 2 bedroom apartments that
-                feature an urban-inspired design that extends
-                beyond your walls and throughout the entire community.
-            </p>
-        </article>
+    
+    <div id="BestOne">
+        <div class="articles">
+            @foreach (var item in Model.BestOnes)
+            {
+                @await Component.InvokeAsync("ItemAdvertisement", new{ item= item})
+            }
+        </div>
     </div>
+
+    <div id="Flats">
+        <div class="articles">
+            @foreach (var item in Model.Flats)
+            {
+                @await Component.InvokeAsync("ItemAdvertisement", new { item = item })
+            }
+        </div>
+    </div>
+
+    <div id="Houses">
+        <div class="articles">
+            @foreach (var item in Model.Houses)
+            {
+                @await Component.InvokeAsync("ItemAdvertisement", new { item = item })
+            }
+        </div>
+    </div>
+
+    <div id="Cottages">
+        <div class="articles">
+            @foreach (var item in Model.Cottage)
+            {
+                @await Component.InvokeAsync("ItemAdvertisement", new { item = item })
+            }
+        </div>
+    </div>
+    <div id="Luxury">
+        <div class="articles">
+            @foreach (var item in Model.Luxury)
+            {
+                @await Component.InvokeAsync("ItemAdvertisement", new { item = item })
+            }
+        </div>
+    </div>
+    
     <a id="seeMore" href="Details/Detail1.html">Zobrazit vše</a>
 
     <h3>Zkušenosti zákazníků</h3>
     <hr>
     <div class="reviews">
         <div>
-            <img src="~/References/podklady/user-lisa-evans-80x80.jpg" alt="">
+            <img src="~/References/podklady/user-lisa-evans-80x80.jpg" class="img-fluid" alt="">
             <div>
                 <p>
                     Thank you for your prompt response and the help that you gave me.
@@ -161,7 +109,7 @@
             </div>
         </div>
         <div>
-            <img src="~/References/podklady/user-nicholas-lane-80x80.jpg" alt="">
+            <img src="~/References/podklady/user-nicholas-lane-80x80.jpg" class="img-fluid" alt="">
             <div>
                 <p>
                     Thank you for your prompt response and the help that you gave me.
@@ -175,3 +123,8 @@
         </div>
     </div>
 </main>
+
+@section Scripts
+{
+    <script src="~/js/HomePage/SelectHomeType.js"></script>
+}

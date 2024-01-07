@@ -22,7 +22,8 @@ namespace RealityProject.DataAccess.Enums
         Olomoucky,
         Moravskoslezky,
         Jihomorovaský,
-        Zlinsky
+        Zlinsky,
+        None
     }
 
     public static class Kraje

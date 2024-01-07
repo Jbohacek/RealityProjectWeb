@@ -1,0 +1,93 @@
+﻿@model RealityProjectWeb.Areas.User.Models.FindPage
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "_Layout";
+}
+@section Styles
+{
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="~/css/SearchPage/Search.css" rel="stylesheet"/>
+}
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#floatingSelectKraj').select2();
+            $('#floatingSelectDistrict').select2();
+            $('#floatingSelectCity').select2();
+
+            
+        });
+    </script>
+    
+}
+
+
+
+
+
+
+@await Component.InvokeAsync("SearchComponent", Model.SearchModel)
+
+<div id="ShowResult" class="gap-4 mt-3">
+    @foreach (var item in Model.Advertisements)
+    {
+        @await Component.InvokeAsync("ItemAdvertisement", new { item = item, fullImage = true })
+    }
+</div>
+
+
+<nav class="d-flex justify-content-center mt-5">
+    <ul class="pagination pagination-lg">
+        @if (Model.PreviousPage)
+        {
+            <li class="page-item">
+                <span class="page-link">Previous</span>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+        }
+        
+        @for (int i = 0; i < Model.TotalPages; i++)
+        {
+            @if (i == Model.Page)
+            {
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">@i</span>
+                </li>
+            }
+            else
+            {
+                <li class="page-item"><a class="page-link" href="#">@i</a></li>
+            }
+        }
+
+
+        @if (Model.NextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        }
+
+    </ul>
+    
+</nav>
+<div class="d-flex justify-content-center">
+    <div class="lead" style="font-size: 15px">
+        Found: @Model.TotalCount
+    </div>
+</div>

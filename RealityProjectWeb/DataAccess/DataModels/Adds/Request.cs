@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace RealityProject.DataAccess.DataModels.Adds
         public string Content { get; set; } = null!;
         public string Email { get; set;} = null!;
         public string Phone { get; set; } = null!;
+
+        public DateTime CreateTime { get; set; }
 
     }
 }

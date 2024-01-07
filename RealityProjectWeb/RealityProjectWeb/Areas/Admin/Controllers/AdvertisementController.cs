@@ -84,11 +84,23 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                
-
                 return RedirectToAction("Upsert", new { id = item.Id,page = 1 });
             }
-            var datItem = Database.Advertisements.GetAllInformation(item.Id);
+
+            var datItem = new Advertisement();
+            var isNew = false;
+
+            if (item.Id == Guid.Empty)
+            {
+                isNew = true;
+                datItem.Address = new Address();
+                datItem.Id = Guid.NewGuid();
+                datItem.Seller = Database.Users.GetFirstOrDefault(x => x.Id == Credential.UserId) ;
+            }
+            else
+            {
+                datItem = Database.Advertisements.GetAllInformation(item.Id);
+            }
 
             datItem.HomeType = item.HomeType;
             datItem.Electricity = item.Electricity;
@@ -104,9 +116,16 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
             
             datItem.Address.City = Database.Location.GetCity(item.Address.City.Id);
 
-            Database.Advertisements.Update(datItem);
+            if (isNew)
+            {
+                Database.Advertisements.Add(datItem);
+            }
+            else
+            {
+                Database.Advertisements.Update(datItem);
+            }
             Database.Save();
-            return RedirectToAction("Upsert", new { id = item.Id, page = 1 });
+            return RedirectToAction("Upsert", new { id = datItem.Id, page = 1 });
         }
 
         [HttpPost]
@@ -114,16 +133,25 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
         {
             var manger = new FileManager(base.WebHostEnvironment.WebRootPath);
 
+            if (file == null)
+            {
+                return RedirectToAction("Upsert", new { id = item.Id, page = 3 });
+            }
+
             var addImage = manger.SaveImage(file, PhotoTypes.Gallery);
 
-            var advertisementdata = Database.Advertisements.GetAll("Gallery").SingleOrDefault(x => x.Id == item.Id);
+            var advertisement = Database.Advertisements.GetAll("Gallery").SingleOrDefault(x => x.Id == item.Id);
 
+            if (advertisement == null)
+            {
+                return RedirectToAction("Upsert", new { id = item.Id, page = 3 });
+            }
 
             Database.Photos.Add(addImage);
 
-            advertisementdata.Gallery.Add(addImage);
+            advertisement.Gallery.Add(addImage);
 
-            Database.Advertisements.Update(advertisementdata);
+            Database.Advertisements.Update(advertisement);
 
             Database.Save();
 
@@ -135,7 +163,10 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
         public IActionResult RemoveImage(Guid photoId, Guid advertisementId)
         {
             var foto = Database.Photos.GetAll().SingleOrDefault(x => x.Id == photoId);
-
+            if (foto == null)
+            {
+                return RedirectToAction("Upsert", new { id = advertisementId, page = 3 });
+            }
 
             Database.Photos.Remove(foto);
             Database.Save();
@@ -163,13 +194,22 @@ namespace RealityProjectWeb.Areas.Admin.Controllers
             }
 
             var addGroup = Database.Groups.GetAll().SingleOrDefault(x => x.Id == idPara);
+            if (addGroup == null)
+            {
+                return RedirectToAction("Upsert", new { id = idAd, page = 2 });
+            }
+            var newPara = new Parameter()
+            {
+                Group = addGroup, 
+                Id = Guid.NewGuid(), 
+                Value = value, 
+                Advertisements = new List<Advertisement>()
+            };
 
-            var newpara = new Parameter() { Group = addGroup, Id = Guid.NewGuid(), Value = value, Advertisements = new List<Advertisement>()};
+            Database.Parameters.Add(newPara);
 
-            Database.Parameters.Add(newpara);
-
-            newpara.Advertisements.Add(addItem);
-            addItem.Parameters.Add(newpara);
+            newPara.Advertisements.Add(addItem);
+            addItem.Parameters.Add(newPara);
 
             Database.Save();
 

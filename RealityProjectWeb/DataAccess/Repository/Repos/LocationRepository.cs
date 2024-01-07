@@ -51,12 +51,12 @@ namespace RealityProject.DataAccess.Repository.Repos
 
         public District GetDistrict(Guid id)
         {
-            return _districts.SingleOrDefault(x => x.Id == id);
+            return _districts.SingleOrDefault(x => x.Id == id) ?? new District();
         }
 
         public City GetCity(Guid id)
         {
-            return _cities.SingleOrDefault(x => x.Id == id);
+            return _cities.Include(x => x.District).SingleOrDefault(x => x.Id == id) ?? new City();
         }
 
     }

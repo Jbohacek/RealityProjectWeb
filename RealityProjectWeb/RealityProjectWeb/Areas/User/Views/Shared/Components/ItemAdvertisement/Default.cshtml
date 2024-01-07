@@ -1,0 +1,29 @@
+﻿@using RealityProject.DataAccess.DataModels.Adds
+@model RealityProject.DataAccess.DataModels.Adds.Advertisement
+
+
+
+<article onclick="openAdv('@Model.Id')">
+    <a>
+        @if (Model.Gallery.Count != 0)
+        {
+            <img src="@Model.Gallery.ToList().First().GetPath()" class="img-fluid " alt="" />
+        }
+        else
+        {
+            <img src="~/Pictures/Defaults/defaultAdvertisment.png" class="img-fluid " alt="">
+        }
+    </a>
+    <a>@Model.GetName()</a>
+    <h5>@Model.GetPrice()</h5>
+    <p>
+        @if (Model.Content != null)
+        {
+            @Model.Content.Substring(0, Math.Min(Model.Content.Length, 200))
+        }
+        else
+        {
+            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu</div>
+        }
+    </p>
+</article>

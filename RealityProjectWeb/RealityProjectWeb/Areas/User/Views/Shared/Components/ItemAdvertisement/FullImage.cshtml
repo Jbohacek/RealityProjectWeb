@@ -1,0 +1,57 @@
+﻿@using RealityProject.DataAccess.Enums
+@model RealityProject.DataAccess.DataModels.Adds.Advertisement
+
+
+
+<div class="card text-bg-dark shadow-lg mx-1" onclick="openAdv('@Model.Id')">
+    @if (Model.Gallery.Count != 0)
+    {
+        <img src="@Model.Gallery.ToList().First().GetPath()" class="card-img pic" alt="" />
+    }
+    else
+    {
+        <img src="~/Pictures/Defaults/defaultAdvertisment.png" class="card-img pic" alt="...">
+    }
+    <div class="card-img-overlay">
+        <h5 class="card-title">@Model.GetName()</h5>
+        
+        @if (Model.Content != null)
+        {
+            <p class="card-text">@Model.Content.Substring(0, Math.Min(Model.Content.Length, 200))</p>
+            
+        }
+        else
+        {
+            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.</div>
+        }
+        <div>
+
+        </div>
+        @switch (Model.Electricity)
+        {
+            case ElectricityCat.A:
+                <span class="EleTag" style="background-color: #1c9e31"><span>Mimořádně úsporná</span><span class="big">A</span></span>
+                break;
+            case ElectricityCat.B:
+                <span class="EleTag" style="background-color: #7ac532"><span>Úsporná</span><span class="big">B</span></span>
+                break;
+            case ElectricityCat.C:
+                <span class="EleTag" style="background-color: #bdff81"><span>Vyhovující</span><span class="big">C</span></span>
+                break;
+            case ElectricityCat.D:
+                <span class="EleTag" style="background-color: #fbff4c"><span>Nevyhovující</span><span class="big">D</span></span>
+                break;
+            case ElectricityCat.E:
+                <span class="EleTag" style="background-color: #f9c04c"><span>Nehospodárná</span><span class="big">E</span></span>
+                break;
+            case ElectricityCat.F:
+                <span class="EleTag" style="background-color: #f88622"><span>Velmi nehospodárná</span><span class="big">F</span></span>
+                break;
+            case ElectricityCat.G:
+                <span class="EleTag" style="background-color: #f71910"><span>Mimořádně nehospodárná</span><span class="big">G</span></span>
+                break;
+        }
+        <span class="PriceTag">@Model.GetPrice()</span>
+
+    </div>
+</div>

@@ -1,0 +1,173 @@
+﻿@model RealityProject.DataAccess.DataModels.Adds.Advertisement
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/DetailPage/picturesDetail.css">
+    <link rel="stylesheet" href="~/css/DetailPage/articleDetail.css">
+    <link rel="stylesheet" href="~/css/DetailPage/tableDetail.css">
+    <link rel="stylesheet" href="~/css/DetailPage/contactDetail.css">
+}
+
+
+<main>
+    @if (@Model.Gallery.Count >= 1)
+    {
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                @for (int i = 0; i < Model.Gallery.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide @i"></button>
+                    }
+                    else
+                    {
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" aria-label="Slide @i"></button>
+                    }
+                }
+            </div>
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.Gallery.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        <div class="carousel-item active">
+                            <img src="@Model.Gallery.ToList()[i].GetPath()" class="d-block w-100" alt="...">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <img src="@Model.Gallery.ToList()[i].GetPath()" class="d-block w-100" alt="...">
+                        </div>
+                    }
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    }
+    else
+    {
+        <img id="main-img" src="~/Pictures/Defaults/defaultAdvertisment.png" alt="">
+    }
+    
+    <div class="unrevert">
+        <div class="header">
+            <h3>@Model.GetName()</h3>
+            <div class="sum">@Model.GetPrice()</div>
+        </div>
+        <div class="header">
+            <h5>@Model.Address</h5>
+            <div class="zanemovitost">za nemovitost</div>
+        </div>
+        <div class="header energie-hypoteka">
+            <div class="header energie">
+                <div>Energetická třída</div>
+                <div id="C">@Model.Electricity.ToString()</div>
+            </div>
+            <div class="header hypoteka">
+                <img src="~/References/podklady/calculator.png" alt="">
+                <a href="">spočítat hypotéku</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="revert">
+        <div class="header">
+            <h3>@Model.GetName()</h3>
+            <h5>@Model.Address</h5>
+        </div>
+        <div class="header">
+            <div class="sum">@Model.GetPrice()</div>
+            <div class="zanemovitost">za nemovitost</div>
+        </div>
+        <div class="header energie-hypoteka">
+            <div class="header energie">
+                <div>Energetická třída</div>
+                <div id="C">@Model.Electricity</div>
+            </div>
+            <div class="header hypoteka">
+                <img src="~/References/podklady/calculator.png" alt="">
+                <a href="">spočítat hypotéku</a>
+            </div>
+        </div>
+    </div>
+
+
+    <article>
+        <p>@Model.Content</p>
+    </article>
+    <aside>
+        <div class="collumn">
+            @for (int i = 0; i < Model.Parameters.Count; i += 2)
+            {
+
+                <div class="collumn-item">
+                    <h6>@Model.Parameters.ToList()[i].Group.Name</h6>
+                    <div>@Model.Parameters.ToList()[i].Value</div>
+                </div>
+
+            }
+        </div>
+        <div class="collumn">
+            @for (int i = 1; i < Model.Parameters.Count; i += 2)
+            {
+
+                <div class="collumn-item">
+                    <h6>@Model.Parameters.ToList()[i].Group.Name</h6>
+                    <div>@Model.Parameters.ToList()[i].Value</div>
+                </div>
+
+            }
+        </div>
+    </aside>
+    <div class="ending-description">
+        <div class="big-header">Kontaktujte Prodejce</div>
+        <div class="big-header revert2">Napiste nam, ozvete se</div>
+    </div>
+    <div class="ending">
+        <div class="contanct">
+            <img src="~/References/podklady/jarmila.png" alt="jarmila">
+            <div>
+                <nevim>Ing. Jarmila Vostrá</nevim>
+                <div class="together">
+                    <img src="~/References/podklady/email.png" alt="">
+                    <a href="mailto:jarmila@vostra.cz">jarmila@vosta.cz</a>
+                </div>
+                <div class="together">
+                    <img src="~/References/podklady/customer-care.png" alt="">
+                    <a href="tel:+420666777888">+420 666 777 888</a>
+                </div>
+
+            </div>
+            <img src="~/References/podklady/MaklerRoku.png" alt="makler">
+            <img src="~/References/podklady/cenaZakazniku.png" alt="cena">
+        </div>
+        <div class="big-header center unrevert2">Napiste nam, ozvete se</div>
+        <form class="reply" method="post" action="/User/Detail/SendRequest">
+            <input name="advGuid" value="@Model.Id" hidden/>
+            <input required type="text" name="name" id="input-jmeno" placeholder="Vaše jméno a příjmení">
+            <input required type="tel" name="telephone" id="input-tel" placeholder="Telefon">
+            <input required type="email" name="email" id="input-email" placeholder="E-mail">
+            <textarea required name="message" placeholder="Napište nám zprávu"></textarea>
+            <div>
+                <button type="submit">Odeslat poptávku</button>
+            </div>
+        </form>
+
+    </div>
+
+</main>
+<img id="map" src="~/References/podklady/map.png" alt="">

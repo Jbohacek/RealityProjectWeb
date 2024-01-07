@@ -20,34 +20,8 @@ namespace RealityProjectWeb.Areas.User.Controllers
 
         public IActionResult Index()
         {
-
-            //base.Database.Users.ResetUserPassword();
-            //Database.Save();
-
-            //Role role = new Role() { Id = Guid.NewGuid(), IsValid = true, Name = "Admin" };
-            //base.Database.Roles.Add(role);
-            //Database.Save();
-
-            //Role admin = Database.Roles.GetAll().FirstOrDefault(x => x.Name == "Admin");
-
-
-            //RealityProject.DataAccess.DataModels.UserManagement.User a =
-            //    new RealityProject.DataAccess.DataModels.UserManagement.User()
-            //    {
-            //        Id = Guid.NewGuid(),
-            //        Username = "jbohacek",
-            //        FirstName = "Jakub",
-            //        LastName = "Bohaček",
-            //        Password = "123456",
-            //        Email = "bohacekjakub@sssvt.cz",
-            //        UserRole = admin
-            //    };
-
-            //Database.Users.Add(a);
-            //Database.Save();
-
-
-            return View();
+            HomePage newHomePage = new(Database);
+            return View(newHomePage);
         }
 
         public IActionResult Privacy()

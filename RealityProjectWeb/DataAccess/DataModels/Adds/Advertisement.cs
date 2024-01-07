@@ -48,7 +48,25 @@ namespace RealityProject.DataAccess.DataModels.Adds
 
         [Required]
         public double Price { get; set; }
-        public string GetPrice() => @$"{Price} Kč";
+
+        public string GetPrice()
+        {
+            var ret = "";
+
+            var reversePrice = Price.ToString().Reverse().ToList();
+
+            for (int i = 0; i < Price.ToString().Length; i++)
+            {
+                ret += reversePrice[i];
+                if ((i +1) % 3 == 0)
+                {
+                    ret += " ";
+                }
+            }
+            var set = ret.ToCharArray();
+            Array.Reverse(set);
+            return new string(set) + " Kč"; 
+        }
 
         [Required]
         public ElectricityCat Electricity { get; set; }

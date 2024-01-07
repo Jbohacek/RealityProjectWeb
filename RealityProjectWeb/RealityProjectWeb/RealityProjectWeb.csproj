@@ -33,7 +33,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\User\Data\" />
-    <Folder Include="Areas\User\Models\" />
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\js\Advertisement\" />
     <Folder Include="wwwroot\Pictures\Profile\" />
@@ -51,6 +50,10 @@
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\User\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\Control\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Areas\Admin\Views\User\Upsert.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\User\Views\Detail\Detail.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\User\Views\Shared\Components\SearchComponent\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\User\Views\Search\Find.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\User\Views\Shared\Components\ItemAdvertisement\Default.cshtml" />
     <_ContentIncludedByDefault Remove="compilerconfig.json" />
   </ItemGroup>
 
@@ -80,6 +83,22 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\User\Views\Shared\Components\ItemAdvertisement\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\User\Views\Search\Find.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\User\Views\Shared\Components\SearchComponent\Default.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\User\Views\Detail\Detail.cshtml" />
   </ItemGroup>
 
 </Project>

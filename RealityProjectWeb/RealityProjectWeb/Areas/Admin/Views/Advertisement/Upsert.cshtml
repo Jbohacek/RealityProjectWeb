@@ -161,6 +161,9 @@
             <li class="nav-item">
                 <a href="#Photos" id="PhotosLink" class="nav-link" data-bs-toggle="tab">Photos</a>
             </li>
+            <li class="nav-item">
+                <a href="#Questions" id="QuestionsLink" class="nav-link" data-bs-toggle="tab">Questions</a>
+            </li>
             
             <button class="btn btn-primary ms-auto mb-1 me-2" style="font-size: 21px" type="submit">Confirm changes</button>
         </ul>
@@ -272,16 +275,17 @@
                                 Is luxury
                             </label>
                         </div>
+   
                         <div class="form-floating mb-3">
-                            <input required asp-for="InsideSize" type="number" class="form-control" id="floatingInputInsideSize">
+                            <input required asp-for="InsideSize" min="0" type="number" class="form-control" id="floatingInputInsideSize">
                             <label for="floatingInputInsideSize">Inside size</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input required asp-for="OutsideSize" type="number" class="form-control" id="floatingInputOutsizeSize">
+                            <input required asp-for="OutsideSize" min="0" type="number" class="form-control" id="floatingInputOutsizeSize">
                             <label for="floatingInputOutsizeSize">Outside size</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input required asp-for="Price" type="number" class="form-control" id="floatingInputOutsizeSize">
+                            <input required asp-for="Price" min="0" type="number" class="form-control" id="floatingInputOutsizeSize">
                             <label for="floatingInputOutsizeSize">Price</label>
                         </div>
                     </div>
@@ -296,7 +300,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-floating mb-3">
-                                    <input required asp-for="Address.Floor" type="number" class="form-control" id="floatingInputInsideSize">
+                                    <input required asp-for="Address.Floor" min="0" type="number" class="form-control" id="floatingInputInsideSize">
                                     <label for="floatingInputInsideSize">Floor</label>
                                 </div>
                             </div>
@@ -417,7 +421,41 @@
 
                 </div>
             </div>
-
+            <div id="Questions" class="tab-pane fade">
+                <div class="rounded border shadow mt-4 p-4">
+                    <div class="display-6 mb-3"><i class="bi bi-person-raised-hand"></i> Questions</div>
+                    @foreach (var item in @Model.Requests.OrderBy(x => x.CreateTime))
+                    {
+                        <div class="border mb-3 rounded">
+                            @if (item.User != null)
+                            {
+                                <div class="fw-light" style="font-size: 34px"><i class="bi bi-question-lg"></i> @item.User.Username</div>
+                            }
+                            else
+                            {
+                                <div class="fw-light" style="font-size: 34px"><i class="bi bi-question-lg"></i> @item.Email</div>
+                            }
+                            <div class="lead ms-4" style="font-size: 22px">@item.Content</div>
+                            <hr/>
+                            @if (item.User != null)
+                            {
+                                <div class="d-flex justify-content-between px-4 pb-3">
+                                    <a href="tel:@item.User.Phone">@item.User.Phone</a>
+                                    <a href="emailto:@item.User.Email">@item.User.Email</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex justify-content-between">
+                                    <a href="tel:@item.Phone">@item.Phone</a>
+                                    <a href="emailto:@item.Email">@item.Email</a>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            
+        </div>
         </div>
         
 

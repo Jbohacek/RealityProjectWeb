@@ -1,0 +1,101 @@
+﻿@model RealityProjectWeb.Areas.User.Models.SearchModel
+
+
+<form method="post" asp-area="User" asp-controller="Search" asp-action="Find">
+    <div class="row border-4 shadow p-3" style="margin: 0 10vh">
+        <div class="col-4">
+            <div class="mb-3 d-flex flex-column">
+                <label for="floatingSelect">Kraj</label>
+                <div hidden>@Model.Kraj</div>
+                <select id="floatingSelectKraj" style="width: 90%" asp-items="@ViewBag.Kraje" asp-for="Kraj" aria-label="Floating label select example">
+                    <option value="">None</option>
+                </select>
+            </div>
+            <div class="mb-3 d-flex flex-column">
+                <div hidden>@Model.District</div>
+                <label for="floatingSelect">District</label>
+                <select class="form-select" style="width: 90%" id="floatingSelectDistrict" asp-items="@ViewBag.Districts" asp-for="District" aria-label="Floating label select example">
+                    <option value="">None</option>
+                </select>
+            </div>
+            <div class="mb-3 d-flex flex-column">
+                <div hidden>@Model.City</div>
+                <label for="floatingSelect">City</label>
+                <select id="floatingSelectCity" style="width: 90%" asp-items="@ViewBag.Cities" asp-for="City">
+                    <option value="">None</option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="floatingSelect" asp-for="Electricity" aria-label="Floating label select example">
+                    <option value="null"></option>
+                    <option value="0">A</option>
+                    <option value="1">B</option>
+                    <option value="2">C</option>
+                    <option value="3">D</option>
+                    <option value="4">G</option>
+                    <option value="5">E</option>
+                    <option value="6">F</option>
+                </select>
+                <label for="floatingSelect">Electricity</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="floatingSelect" asp-for="IsLuxury" aria-label="Floating label select example">
+                    <option value="null">?</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <label for="floatingSelect">IsLuxury</label>
+            </div>
+
+
+
+        </div>
+        <div>
+            <div class="d-flex mb-3 gap-3">
+                <div class="form-floating mb-3 w-100">
+                    <input required asp-for="MinSizeIn" min="0" max="@ViewBag.MaxSizeIn" type="number" class="form-control" id="floatingInputInsideSize">
+                    <label for="floatingInputInsideSize">Inside size MIN</label>
+                </div>
+                <div class="form-floating mb-3 w-100">
+                    <input required asp-for="MaxSizeIn" min="0" max="@ViewBag.MaxSizeIn" type="number" class="form-control" id="floatingInputInsideSize">
+                    <label for="floatingInputInsideSize">Inside size MAX</label>
+                </div>
+            </div>
+
+            <div class="d-flex mb-3 gap-3">
+                <div class="form-floating mb-3 w-100">
+                    <input required asp-for="MinSizeOut" min="0" max="@ViewBag.MaxSizeOut" type="number" class="form-control" id="floatingInputInsideSize">
+                    <label for="floatingInputInsideSize">Out size MIN</label>
+                </div>
+                <div class="form-floating mb-3 w-100">
+                    <input required asp-for="MaxSizeOut" min="0" max="@ViewBag.MaxSizeOut" type="number" class="form-control" id="floatingInputInsideSize">
+                    <label for="floatingInputInsideSize">Out size MAX</label>
+                </div>
+            </div>
+
+            <div class="d-flex mb-3 gap-3">
+                <div class="form-floating mb-3 w-100">
+                    <input required asp-for="MinPrice" min="0" max="@ViewBag.MaxPrice" type="number" class="form-control" id="floatingInputInsideSize">
+                    <label for="floatingInputInsideSize">Price MIN</label>
+                </div>
+                <div class="form-floating mb-3 w-100">
+                    <input required asp-for="MaxPrice" min="0" max="@ViewBag.MaxPrice" type="number" class="form-control" id="floatingInputInsideSize">
+                    <label for="floatingInputInsideSize">Price MAX</label>
+                </div>
+            </div>
+        </div>
+        <input hidden asp-for="IsNew" type="checkbox" value="false"/>
+
+        <button class="btn btn-warning" type="submit">Search!</button>
+    </div>
+</form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $('#floatingSelectKraj').val("@Html.Raw(Model.Kraj)");
+    $('#floatingSelectDistrict').val("@Html.Raw(Model.District)");
+    $('#floatingSelectCity').val("@Html.Raw(Model.City)");
+</script>
