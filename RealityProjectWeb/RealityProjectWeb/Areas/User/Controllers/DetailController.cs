@@ -17,6 +17,10 @@ namespace RealityProjectWeb.Areas.User.Controllers
         {
             var item = Database.Advertisements.GetAllInformation(advGuid);
 
+            item.ViewsCount++;
+
+            Database.Save();
+
             return View(item);
         }
 

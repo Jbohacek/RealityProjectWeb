@@ -43,7 +43,7 @@ namespace RealityProject.DataAccess.DataModels.Adds
             };
             var ret = @$"Prodej {type} {InsideSize}m²"; ;
 
-            return OutsideSize != null ? ret + @$" s pozemkem {OutsideSize}m²" : ret;
+            return OutsideSize != 0 ? ret + @$" s pozemkem {OutsideSize}m²" : ret;
         }
 
         [Required]

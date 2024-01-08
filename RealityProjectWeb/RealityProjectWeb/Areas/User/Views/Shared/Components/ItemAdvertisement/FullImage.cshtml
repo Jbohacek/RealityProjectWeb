@@ -17,12 +17,11 @@
         
         @if (Model.Content != null)
         {
-            <p class="card-text">@Model.Content.Substring(0, Math.Min(Model.Content.Length, 200))</p>
+            <p style="filter: brightness(70%)" class="card-text">@Model.Content.Substring(0, Math.Min(Model.Content.Length, 200))</p>
             
         }
         else
         {
-            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.</div>
         }
         <div>
 
