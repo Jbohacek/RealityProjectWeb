@@ -23,7 +23,7 @@ namespace RealityProject.DataAccess.Repository.Repos
         {
             var item = _context.Advertisements
                 .Include(x => x.Gallery)
-                .Include(x => x.Seller)
+                .Include(x => x.Seller).ThenInclude(x => x.ProfilePicture)
                 .Include(x => x.Requests).ThenInclude(x => x.User)
                 .Include(x =>x.Parameters).ThenInclude(x => x.Group)
                 .Include(x => x.Address)

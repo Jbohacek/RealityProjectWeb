@@ -15,10 +15,14 @@
 
 
 <main>
-    @if (@Model.Gallery.Count >= 1)
+    @if (Model.Gallery.Count >= 1)
     {
         <div id="carouselExampleIndicators" class="carousel slide">
             <div class="carousel-indicators">
+                @if (Model.Gallery.Count == 0)
+                {
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                }
                 @for (int i = 0; i < Model.Gallery.Count; i++)
                 {
                     if (i == 0)
@@ -32,6 +36,12 @@
                 }
             </div>
             <div class="carousel-inner">
+                @if (Model.Gallery.Count == 0)
+                {
+                    <div class="carousel-item active">
+                        <img src="~/Pictures/Defaults/defaultAdvertisment.png" class="d-block w-100" alt="...">
+                    </div>
+                }
                 @for (int i = 0; i < Model.Gallery.Count; i++)
                 {
                     if (i == 0)
@@ -139,17 +149,21 @@
     </div>
     <div class="ending">
         <div class="contanct">
-            <img src="~/References/podklady/jarmila.png" alt="jarmila">
+            <img width="100" height="100" src="@Model.Seller.ProfilePicture.GetPath()" alt="jarmila">
             <div>
-                <nevim>Ing. Jarmila Vostrá</nevim>
+                <nevim>@Model.Seller.GetFullName()</nevim>
                 <div class="together">
                     <img src="~/References/podklady/email.png" alt="">
-                    <a href="mailto:jarmila@vostra.cz">jarmila@vosta.cz</a>
+                    <a href="mailto:jarmila@vostra.cz">@Model.Seller.Email</a>
                 </div>
-                <div class="together">
-                    <img src="~/References/podklady/customer-care.png" alt="">
-                    <a href="tel:+420666777888">+420 666 777 888</a>
-                </div>
+                @if (Model.Seller.Phone != null)
+                {
+                    <div class="together">
+                        <img src="~/References/podklady/customer-care.png" alt="">
+                        <a href="tel:+420666777888">+420 @Model.Seller.Phone</a>
+                    </div>
+                }
+                
 
             </div>
             <img src="~/References/podklady/MaklerRoku.png" alt="makler">

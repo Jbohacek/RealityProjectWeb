@@ -6,7 +6,7 @@
 <div class="card text-bg-dark shadow-lg mx-1" onclick="openAdv('@Model.Id')">
     @if (Model.Gallery.Count != 0)
     {
-        <img src="@Model.Gallery.ToList().First().GetPath()" class="card-img pic" alt="" />
+        <img src="@Model.Gallery.ToList()[ViewBag.random].GetPath()" class="card-img pic" alt="" />
     }
     else
     {

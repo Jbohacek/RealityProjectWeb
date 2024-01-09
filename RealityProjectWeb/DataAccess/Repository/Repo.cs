@@ -12,7 +12,7 @@ namespace RealityProject.DataAccess.Repository
 {
     public abstract class Repo<T> where T : class, ITable
     {
-        private readonly ApplicationDbContext Context;
+        public ApplicationDbContext Context;
         internal DbSet<T> DbSet { get; set; }
 
         protected Repo(ApplicationDbContext data)

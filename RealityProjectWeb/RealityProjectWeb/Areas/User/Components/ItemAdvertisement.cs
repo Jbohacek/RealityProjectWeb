@@ -10,6 +10,9 @@ namespace RealityProjectWeb.Areas.User.Components
         {
             if (fullImage)
             {
+                Random a = new Random();
+
+                ViewBag.random = a.Next(0, item.Gallery.Count);
                 return View("FullImage",item);
             }
 
