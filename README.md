@@ -1,82 +1,114 @@
+# Reality Project Web
 
-# Relity project web
+Tento web byl vytvořen jako závěrečný projekt z programování na SSSVT na platformě ASP.NET.
 
-Tenhle web byl vytvořen jako závěrečný projekt na programování na SSSVT na platformě ASP.NET.
+## Popis projektu
 
-Tématem je web na realitky(web na inzeraci bytů), kde je možné kontaktovat prodavače a prodavači jsou možný vytvářet inzeráty na které pak možný zákazníci mužou reagovat. Design webu byl předen daný, avšak bylo nutné ho napsat přes CSS.
+Tématem je realitní web pro inzerci bytů, kde mohou prodávající vytvářet inzeráty a zákazníci na ně reagovat. Uživatelé mohou také kontaktovat prodávající přímo přes web. Design byl předem daný, ale bylo nutné ho napsat pomocí CSS.
 
-Cílem bylo prověřit a zlepšit znalostí
-- css (bootstrapu), html, javascriptu
-- asp.net a c#
-- MSSSQL a Entity Frameworku
+Cílem projektu bylo prověřit a zlepšit znalosti:
+- CSS (Bootstrap), HTML, JavaScript
+- ASP.NET a C#
+- MSSQL a Entity Frameworku
 
-V projektu najdete
-- Základní operace CRUD na uživatele a inzeráty
-- Zabezepčení admin panelu před zneužítím
+V projektu najdete:
+- Základní operace CRUD pro uživatele a inzeráty
+- Zabezpečení administračního panelu před zneužitím
+
+---
 
 ## Procházení inzerátů
-![ProchazeniInz](Pics/ProhlizeniInzeratu.gif)
-Všechny inzeráty jsou rozdělený do 4 kategorii
+
+![Procházení inzerátů](Pics/ProhlizeniInzeratu.gif)
+
+Všechny inzeráty jsou rozděleny do čtyř kategorií:
 - Byty
 - Luxusní
 - Domy
 - Chaty
-V databázi jsou také naimportované všechny česká města.
 
-*(web běžel na netu nějakou chvilku a kluci tam přidali nahodný obrázky, omluvte duck duck go :D )*
+V databázi jsou naimportována všechna česká města.
 
-![ProchazeniInz](Pics/KomplexniVyhledavani.png)
-Web disponuje komplexním vyhledáváním inzerátů
+*(Web běžel na internetu nějakou dobu a kluci tam přidali náhodné obrázky, omluvte DuckDuckGo :D)*
 
+### Komplexní vyhledávání
+
+![Komplexní vyhledávání](Pics/KomplexniVyhledavani.png)
+
+Web disponuje pokročilým vyhledáváním inzerátů podle různých parametrů.
+
+---
 
 ## Administrace
-![LoginPage](Pics/LoginNaAdmina.png)
-![AdminPanel](Pics/adminPanel.png)
-Po zadání /admin za url. Dostanete se do administračního panelu, kde mužete uprvait uživate a inzeráty. Admin má přístup k uživatelům a ke všem dotazům naopak prodavač má pouze k dispozici svoje inzeráty. Domovská stránka se musí dodělat s grafy, pravděpodobně nikdy se nedodělá :)
 
+### Přihlášení
+
+![Přihlášení do administrace](Pics/LoginNaAdmina.png)
+
+Po zadání `/admin` do URL se dostanete do administračního panelu.
+
+### Administrační panel
+
+![Administrační panel](Pics/adminPanel.png)
+
+V administraci lze spravovat uživatele a inzeráty:
+- **Admin** má přístup ke všem uživatelům, inzerátům a dotazům.
+- **Prodávající** má přístup pouze ke svým inzerátům.
+
+Domovská stránka administračního panelu měla obsahovat grafy, ale pravděpodobně nikdy nebude dokončena. :)
+
+---
 
 ## Inzeráty
-![Parameters](Pics/Parametry.gif)
-Každý inzerát má uložené tyhle informace:
-- počet shlednutí na webu
-- cenu
-- typ (Byty, luxunsí, Domy, Chaty)
-- velikost bytu, velikost zahrady
-- využití elektřiny
-- fotky
-- dotazy
-- Jeho parametry, jejich typy jsou upravit v záložce Pamater Group
 
-Jde vytvořit, editovat a mazat inzeráty.
+### Detail inzerátu
 
+![Detail inzerátu](Pics/Parametry.gif)
 
+Každý inzerát obsahuje následující informace:
+- Počet zobrazení
+- Cena
+- Typ (Byty, Luxusní, Domy, Chaty)
+- Velikost bytu, velikost zahrady
+- Spotřeba elektřiny
+- Fotky
+- Dotazy
+- Parametry, jejichž typy lze upravovat v administračním panelu
 
-### Parametry
-![EditParameters](Pics/EditaceParametru.gif)
+Lze vytvářet, editovat a mazat inzeráty.
 
-Každý inzerát má vlastní parametry a typy těchto parametrů jde editovat v admin panelu.
+### Úprava parametrů
+
+![Úprava parametrů](Pics/EditaceParametru.gif)
+
+Každý inzerát má vlastní parametry, jejichž typy lze editovat v administračním panelu.
+
+---
 
 ## Uživatelé
-![UserEdit](Pics/EditAddUser.gif)
 
-Administrátor má právo přidávat, editovat a mazat uživatele. Existují 3 typy uživatelům
-- User
-- Seller
-- Administrator 
+![Správa uživatelů](Pics/EditAddUser.gif)
 
-User nemá žádné práva a existuje jako potencialní zákazník. Seller muže vytvářet, editovat a mazat inzeráty. Administrátor má všechny práva
+Existují tři typy uživatelů:
+- **User** – běžný uživatel (potenciální zákazník) bez speciálních práv
+- **Seller** – může vytvářet, editovat a mazat své inzeráty
+- **Administrator** – má plná práva k administraci webu
 
-Na hesla používám Bcrypt
+Hesla jsou zabezpečena pomocí Bcrypt.
 
+---
 
-# Postup na instalaci
-1) Naklonujte
-2) Vytvořte databázi pomocí "dbRealitkyWebZaloha.sql"
-3) spusťe projekt
+## Instalace
 
+1) Naklonujte repozitář.
+2) Vytvořte databázi pomocí `dbRealitkyWebZaloha.sql`.
+3) Spusťte projekt.
 
-#### Admin účet:
+### Přihlašovací údaje pro administraci:
 
-Username: jbohacek
+- **Uživatelské jméno:** `jbohacek`
+- **Heslo:** `andilek`
 
-Heslo: andilek 
+---
+
+Tento projekt byl skvělou zkušeností s ASP.NET, databázemi a webovým vývojem. 😊
