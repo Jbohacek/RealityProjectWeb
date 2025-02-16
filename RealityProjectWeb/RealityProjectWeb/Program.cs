@@ -17,7 +17,7 @@ namespace RealityProjectWeb
 
 
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-                builder.Configuration.GetConnectionString("AspifyConnection")
+                builder.Configuration.GetConnectionString("LocalServer")
             ));
 
             builder.Services.AddScoped<UnitOfWork>();
